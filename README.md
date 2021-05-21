@@ -1,0 +1,1 @@
+Version number should update in manifest.json every time while submitting the zip
