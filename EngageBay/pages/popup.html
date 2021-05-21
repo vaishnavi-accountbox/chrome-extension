@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://app.engagebay.com/assets/theme/css/style.css" rel="stylesheet">
+<link href="../css/popup.css" rel="stylesheet">
+<link href="../css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+<link href="../css/bootstrapValidator.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-select.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet">
+</head>
+<body>
+
+	<div id="popupContent" class="popup-container">
+
+		<div class="loader" style="padding: 150px;background: #fff;">
+			<img style="height: 100px; width: 100px;" src="../images/loader.gif">
+		</div>
+
+	</div>
+
+	<script type="text/template" id="navbar-template">
+			
+			
+<div class="navbar" style="background: #fff; min-height: 40px !important;border-bottom: 1px solid #ddd;">
+	
+<ul class="" style="padding-left: 0; list-style: none; margin: 0;">
+	<li class="parent"
+		style="display: block; position: relative; float: left;">
+			<div style="height: 33px;background-image: url(../images/icon_32.png);width: 30px;background-repeat: no-repeat;margin: 5px 10px 0px 15px;background-size: 28px;" src="../images/icon_32.png"></div>
+	</li>
+	<li class="dropdown options" style="float: right">
+		<a role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton"  class="dropdown-toggle topmenu-dropdown fs-13 " data-toggle="dropdown" style="line-height: 45px;color: #5a5a5a;font-size: 14px;padding: 0 18px;outline: 0;"><span class="extension-seleted-name">Email Activities</span><span><img src="../images/caret-down.png" style="height: 10px;width:10px;margin-left: 10px;"></span></a>
+		<ul role="menu" class="dropdown-menu sub-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+			 <li class="active" id="loadActivities"><a href="javscript:void(0);" style="padding: 8px 20px;font-weight: 400;color: #504e4e;">Email Activities</a></li>
+             <li id="loadContacts"><a href="javscript:void(0);"  style="padding: 8px 20px;font-weight: 400;color: #504e4e;">Contacts </a></li>
+             <li id="loadLinkedInSearch"><a href="javscript:void(0);"  style="padding: 8px 20px;font-weight: 400;color: #504e4e;">LinkedIn Sales Potentials </a></li>
+		</ul>
+	</li>
+	
+	<li class="dropdown options" style="float: right;">
+		<a role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton"  class="dropdown-toggle topmenu-dropdown fs-13 " data-toggle="dropdown" style="line-height: 45px;color: #5a5a5a;font-size: 14px;padding: 0 18px;outline: 0;"><span class="">Add</span><span><img src="../images/caret-down.png" style="height: 10px;width:10px;margin-left: 10px;"></span></a>
+		<ul role="menu" class="dropdown-menu sub-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+			 <li class="active" id="loadContactForm"><a href="javscript:void(0);" style="padding: 8px 20px;font-weight: 400;color: #504e4e;">Contact</a></li>
+             <li id="loadCompanyForm"><a href="javscript:void(0);"  style="padding: 8px 20px;font-weight: 400;color: #504e4e;">Company </a></li>
+              <li id="loadTaskForm"><a href="javscript:void(0);"  style="padding: 8px 20px;font-weight: 400;color: #504e4e;">Task </a></li>
+               <li id="loadDealForm"><a href="javscript:void(0);"  style="padding: 8px 20px;font-weight: 400;color: #504e4e;">Deal </a></li>
+		</ul>
+	</li>
+	
+	
+
+	<!-- <li class="options" id="loadLinkedInSearch" style="padding: 10px;float:left;" style="display: block; position: relative; float: left;"><span>
+		LinkedIn Prospects </span>
+                </li>-->
+
+
+</ul>
+
+</div>
+
+
+
+<div id="dashbordContent">
+	<img style="padding:10px;" src="../images/f-loader.gif" />
+</div>
+
+	</script>
+
+	<script type="text/template" id="welcome-template">
+			
+				<div class="welcome-container">		
+						
+						<div class="panel-heading">
+							<img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png" alt="logo" width="180" height="auto" class="logo-img">
+						</div>
+						
+								<div class="">
+									<div class="">
+										<h4 class="xs-mb-0">Login to use EngageBay</h4>
+										<div class="login-submit xs-m-0 md-p-0">
+											<button class="btn btn-warning btn-lg" id="showLoginForm">
+												Log in
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<div class="">
+									<div class="">
+										<div class="login-submit xs-m-0 md-p-0">
+											<button class="btn btn-default btn-lg" id="showSignupForm">
+												Create a free account
+											</button>
+										</div>
+									</div>
+								</div>
+
+				</div>
+	</script>
+
+	<script type="text/template" id="login-template">
+					<div class="login-form-container">		
+						
+						<div class="panel-heading">
+							<img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png" alt="logo" width="180" height="auto" class="logo-img">
+							<h4>EngageBay Login</h4>
+						</div>
+						
+						<form id="loginForm" class="auth-form" name="loginForm" method="POST" >
+								
+								<input type='hidden' name='command' value='login' />
+
+								<div id="errorBlock" class="text-danger">
+								</div>
+
+								<div id="successBlock" class="text-success">
+								</div>
+
+								{{#if login_with_verification_code}}
+									
+								<input class="form-control emailtype" type="hidden"  name="login_with_verification_code" autocomplete="email"
+											required value="true" />
+								<input class="form-control emailtype" type="hidden"  name="email" autocomplete="email"
+											required value="{{email}}" />
+
+								<div class="form-group">
+									<div class="">
+										<input class="form-control" type="text" name="password" autocomplete="off" placeholder="Verification Code" required />
+									</div>
+								</div>
+
+								{{else}}
+
+								<div class="form-group">
+									<div class="">
+										<input class="form-control emailtype" type="email"  title="Enter a valid email address." 
+											pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+										name="email" autocomplete="email"
+											placeholder="Work Email" required value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="">
+										<input class="form-control" type="password" name="password" minlength="4" title="Enter at least 4 characters." minlength="20" autocomplete="off" placeholder="Password" required />
+									</div>
+								</div>
+
+								{{/if}}
+
+								<div class="form-group">
+									<div class="">
+										<div class="login-submit xs-m-0 xs-pt-0">
+											<button class="btn btn-warning btn-lg" type="submit">
+												Login
+												<img src="../images/f-loader.gif" style="display:none;">
+											</button>
+										</div>
+									</div>
+								</div>
+
+							{{#if login_with_verification_code}}
+ 								<div class="">
+                                    Didn't receive the email? <a id="resendLoginVerificationCode" href="#" class="text-info" data-email="{{email}}">Send Again</a>
+								</div>
+								<div class="">
+                                    <a id="showLoginForm" href="#" class="text-info">Back to login</a>
+								</div>
+							{{else}}
+								<div class="form-group login-submit xs-pt-0 "><button class="btn-bold btn-google google-icon-text btn btn-primary btn-lg" id="loginWithGsuite" > Sign in with G Suite </button></div>
+								
+								<div class="">
+									Don't have an account? <a id="showSignupForm" href="#" class="text-info">Sign Up</a>
+								</div>
+							{{/if}}
+                               
+
+							</form>
+
+				</div>
+	</script>
+	
+	<script type="text/template" id="generate-verification-code-template">
+					<div class="login-form-container">		
+						
+						<div class="panel-heading">
+							<img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png" alt="logo" width="180" height="auto" class="logo-img">
+							<h4>EngageBay Login</h4>
+						</div>
+						
+						<form id="generateVerificationCodeForm" name="loginVerificationCodeForm" method="POST" >
+								
+								<input type='hidden' name='command' value='login' />
+
+								<div id="errorBlock" class="text-danger">
+								</div>
+
+								<div class="form-group">
+									<div class="">
+										<input class="form-control emailtype" type="email"  title="Enter a valid email address." pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" name="email" autocomplete="email"
+											placeholder="Work Email" required value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="">
+										<div class="login-submit xs-m-0 xs-pt-0">
+											<button class="btn btn-warning btn-lg" type="submit">
+												Send Verification Code
+												<img src="../images/f-loader.gif" style="display:none;">
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<div class="">
+                                    <a id="showLoginForm" href="#" class="text-info">Back to login</a>
+								</div>
+
+							</form>
+
+				</div>
+	</script>
+	
+	<script type="text/template" id="signup-template">
+
+			<div class="login-form-container">		
+						
+						<div class="panel-heading">
+							<img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png" alt="logo" width="180" height="auto" class="logo-img">
+							<h4>Create a free account</h4>
+						</div>
+
+					<form id="signUpForm" class="auth-form" name="signUpForm" method="POST" >
+
+								<div id="errorBlock" class="text-danger">
+								</div>
+								
+								<input type='hidden' name='command' value='signup' />
+								<input type='hidden' id="timeZoneId" name='timeZoneId' value='' />
+								<input type='hidden' name='source' value='BROWSER_EXTENSION' />
+
+								<div class="form-group">
+									<div class="">
+										<input class="form-control" type="name" name="name"
+											autocomplete="name" placeholder="Name" title="Name should be between 4-30 characters in length. Both letters and numbers are allowed but it should start with a letter. Cannot contain special characters." minlength="4" maxlength="30"  required
+											pattern="^[a-zA-Z][a-zA-Z0-9 ]{3,30}$" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="position-relative">
+
+										<input class="form-control user-email-field emailtype" type="email" name="email"
+											autocomplete="email" title="Enter a valid email address."  placeholder="Work Email"
+											required pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"/>
+
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="">
+										<input class="form-control" type="url" name="website"
+											autocomplete="url" placeholder="Website URL" title="Enter a valid Website URL." minlength="3" maxlength="50" required
+											pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="">
+										<input class="form-control" type="password" name="password"
+										pattern=".{4,20}"  autocomplete="off"
+											placeholder="Password" title="Enter at least 4 characters." required />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="">
+										<div class="login-submit xs-m-0 xs-pt-0">
+											<button class="btn btn-warning btn-lg" type="submit">
+												Sign Up 
+												<img src="../images/f-loader.gif" style="display:none;">
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<div class="">
+									Already have an account? <a id="showLoginForm" href="#" class="text-info">Sign In</a>
+								</div>
+
+							</form>
+
+				</div>
+
+	</script>
+
+
+	<script type="text/template" id="dashboard-template">
+
+			{{#if this.length}}
+
+{{#each this}}
+
+<div class="notifications-content"> 
+
+				<div style="position: absolute;width: 40px;">
+
+					{{#equal action "BROWSER_EXTENSION_EMAIL_SENT"}}
+						 <img class="text_avatar" src="{{getUserProfileImg}}" width="35" height="35" style="border-radius: 20px;"/>
+						{{else}}
+						{{#checkrecipientsCount info 1}}
+						<span class="gravatar-intial-img" data-name="{{getFirstRecipientDetails "name" info}}" data-email="{{getFirstRecipientDetails "emailAddress" info}}"></span>
+						{{else}}
+						 <img class="text_avatar" src="{{getEmailGravatarURL this}}" width="35" height="35" style="border-radius: 20px;"/>
+						{{/checkrecipientsCount}}
+					{{/equal}}
+
+				</div>
+		
+			<div class="no-left-padding" style="padding-left: 45px;">
+			
+					{{#equal action "BROWSER_EXTENSION_EMAIL_SENT"}}
+					  <div style="font-size: 14px;font-weight: 500;color: #909090;text-shadow: none;overflow: hidden;text-overflow: ellipsis;">You ({{getActivityInfo info "from_email"}})</div>
+					  <div class="break-word">Sent an email with subject "{{getActivityInfo info "subject"}}"</div>
+					  <div class="break-word">	Recipient{{#checkrecipientsCount info 1}} is{{else}}s are{{/checkrecipientsCount}} {{getrecipients info}}</div>
+					{{/equal}}
+
+					{{#equal action "BROWSER_EXTENSION_EMAIL_OPEN_BY_SOMEONE"}}
+				  	<div style="font-size: 14px;font-weight: 500;color: #909090;text-shadow: none;overflow: hidden;text-overflow: ellipsis;">
+						{{getRecipientName info}}
+					</div>
+					<div class="break-word">
+						Opened email with subject "{{getActivityInfo info "subject"}}"
+					</div>
+					{{/equal}}
+
+					{{#equal action "BROWSER_EXTENSION_EMAIL_ATTACHMENT_DOWNLOADED_BY_SOMEONE"}}
+				  	<div style="font-size: 14px;font-weight: 500;color: #909090;text-shadow: none;overflow: hidden;text-overflow: ellipsis;">
+						{{getRecipientName info}}
+					</div>
+					<div class="break-word">
+						Downloaded document with the name "{{getActivityInfo info "document_name"}}"
+					</div>
+					{{/equal}}
+
+					{{#equal action "BROWSER_EXTENSION_EMAIL_ATTACHMENT_OPEN_BY_SOMEONE"}}
+				  	<div style="font-size: 14px;font-weight: 500;color: #909090;text-shadow: none;overflow: hidden;text-overflow: ellipsis;">
+						{{getRecipientName info}}
+					</div>
+					<div class="break-word">
+						Opened document with the name "{{getActivityInfo info "document_name"}}"
+					</div>
+					{{/equal}}
+
+					{{#equal action "BROWSER_EXTENSION_EMAIL_LINK_CLICKED"}}
+					<div style="font-size: 14px;font-weight: 500;color: #909090;text-shadow: none;overflow: hidden;text-overflow: ellipsis;">
+						{{getRecipientName info}}
+					</div>
+					<div class="break-word">
+						 Link (<a href="{{getActivityInfo info "url"}}{{getActivityMiscInfo misc_info "url"}}">{{getActivityInfo info "url"}}{{getActivityMiscInfo misc_info "url"}}</a>) clicked with subject "{{getActivityInfo info "subject"}}" 
+					</div>
+					{{/equal}}
+
+					<div>
+						<span style="color: #b3b3b3;font-size: 11px;"> {{getFormattedTime created_time}}</span>
+						<span style="float: right;color: #b3b3b3;font-size: 11px;">{{timeAgo created_time}}</span>
+					</div>
+					
+					</div>
+					
+				</div>	
+
+	{{/each}}
+
+{{else}}
+
+<div class="empty-pad-content-container block-pad-contnt open ">
+				   <div class="padcontent-image-container"><img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/icons/email-bc.svg"></div>
+				   <div class="pad-help-block-container">
+				   <div class="padcontent-help-block">
+			   			<h4 class="info-text text-left">Email Activities</h4>
+			   			<p class="pad-text">
+							There are no email activities.
+						</p>
+				   		
+				   		</div>
+				   </div>
+			</div>
+
+{{/if}}
+	</script>
+
+<script type="text/template" id="linkedIn-container-template">
+
+	<div id="contactsContent">
+		<img style="padding:10px;" src="../images/f-loader.gif" />
+	</div>	
+
+</script>
+
+<script type="text/template" id="linkedin-prospect-template">
+	<div class="container">
+		<div class="navbar nav-tabs">
+			<ul id="linkedinporspect" style="padding-left: 0;list-style: none;margin: 0;">
+				<li class="active" style="float: left;"><a href="#criteria" data-toggle="tab"  style="font-size: 13px;line-height: 45px;padding: 8px 20px;">Potentials by Selected Criteria</a></li>
+				<li class="" style="float: left;"><a href="#keyword" data-toggle="tab" style="font-size: 13px; padding-left: 15px;padding-right: 15px;line-height: 45px;padding: 8px 20px;">Potentials by any Keyword</a></li>
+			</ul>
+		</div>
+		<div class="tab-content" style="padding-top: 0px !important;">
+					<div class="tab-pane active" id="criteria" style="margin-top: 10px;">
+						<form class="form-horizontal" role="form" novalidate="novalidate">
+							<div class="form-group">
+							<div class="col-xs-12">
+								<p style="opacity:0.95;margin-bottom:15px;margin-left: 2px;">Identify LinkedIn profiles from Google, based on selected criteria and add them to your leads database, to increase your sales.</p>
+							</div>
+								<label for="form-country" class="col-xs-3 control-label" style="font-weight:normal">Role</label>
+								<div class="col-xs-7 selectView">
+								  <div class="styled-select" >
+									<select class="form-control select" id="form-manager" >
+										<option value="other" >Select Role</option>
+										<option value="(&quot;Owner&quot; OR &quot;Founder&quot; OR &quot;CEO&quot; OR &quot;Chief Executive Officer&quot; OR &quot;Founder &amp; CEO&quot; OR &quot;Partner&quot;) -assistant -intern -secretary" >Owner</option>
+										<option value="(&quot;Marketing Manager&quot; OR &quot;Director of Marketing&quot; OR &quot;CMO&quot; OR &quot;Chief Marketing Officer&quot; OR &quot;Vice President of Marketing&quot; OR &quot;VP of Marketing&quot; OR &quot;VP Marketing&quot;)" >Marketing Manager</option>
+										<option value="(&quot;Sales Manager&quot; OR &quot;Business Development Manager&quot; OR &quot;Sales Director&quot; OR &quot;Director of Sales&quot; OR &quot;Head of Sales&quot; OR &quot;VP Sales&quot; OR &quot;VP of Sales&quot;)" >Sales Manager</option>
+										<option value="(&quot;Operations Manager&quot; OR &quot;COO&quot; OR &quot;Chief Operations Officer&quot; OR &quot;Director of Operations&quot; OR &quot;VP Operations&quot; OR &quot;Vice President of Operations&quot;)" >Operations Manager</option>
+										<option value="(&quot;Financial Manager&quot; OR &quot;Chief Financial Officer&quot; OR &quot;CFO&quot; OR &quot;Finance Director&quot; OR &quot;Director of Finance&quot; OR &quot;VP Finance&quot; OR &quot;VP of Finance&quot; &quot;Finance Manager&quot; OR &quot;VP Finance&quot;)" >Financial Manager</option>
+										<option value="(&quot;IT Manager&quot; OR &quot;CIO&quot; OR &quot;Director of IT&quot; OR &quot;Chief Information Officer&quot; OR &quot;Director of Information Technology&quot; OR &quot;Vice President of IT&quot; OR &quot;IT Director&quot;)" >IT Manager</option>
+										<option value="(&quot;Chief Technology Officer&quot; OR &quot;CTO&quot; OR &quot;Director of Technology&quot; OR &quot;VP Technology&quot; OR &quot;Vice President of Technology&quot; OR &quot;Technology Director&quot;)" >Chief Technology Manager</option>
+										<option value="(&quot;Customer Service Manager&quot; OR &quot;Customer Support Manager&quot; OR &quot;Customer Success Manager&quot; OR &quot;Office Manager&quot; OR &quot;Head of Customer Support&quot; OR &quot;Customer Service Director&quot;)" >Customer Service Manager</option>
+										<option value="(&quot;Sales Representative&quot; OR &quot;Sales Rep&quot; OR &quot;Account Manager&quot; OR &quot;Account Executive&quot; OR &quot;Business Development&quot; OR &quot;Sales Development&quot; OR &quot;Sales Executive&quot; OR &quot;SDR&quot; OR &quot;BDR&quot;)" >Sales Representative</option>
+										<option value="(&quot;Manager&quot; OR &quot;Officer&quot; OR &quot;Coordinator&quot; OR &quot;Director&quot; OR &quot;VP&quot; OR &quot;President&quot;) AND (&quot;HR&quot; OR &quot;Human Resources&quot; OR &quot;People Officer&quot; OR &quot;Talent&quot;)" >HR Manager</option>
+										<option value="(&quot;Product Manager&quot; OR &quot;Project Manager&quot; OR &quot;VP Product&quot; OR &quot;Project Lead&quot;)" >Product/Project Manager</option>
+										<option value="(&quot;Lawyer&quot; OR &quot;Attorney&quot; OR &quot;Attorney at Law&quot;) -assistant -intern -secretary -paralegal" >Lawyer</option>
+										<option value="(&quot;Realtor&quot; OR &quot;Real Estate Agent&quot;) -assistant -intern -secretary" >Realtor</option>
+										<option value="other" >Other</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="form-country" class="col-xs-3 control-label" style="font-weight:normal">Country</label>
+								<div class="col-xs-7 selectView">
+								  <div class="styled-select">
+									<select class="form-control" id="form-country" >
+										<option value="linkedin.com" >Select Country</option>
+										<option value="linkedin.com" >United States</option>
+										<option value="af.linkedin.com">Afghanistan</option>
+										<option value="al.linkedin.com">Albania</option>
+										<option value="dz.linkedin.com">Algeria</option>
+										<option value="ar.linkedin.com">Argentina</option>
+										<option value="au.linkedin.com" >Australia</option>
+										<option value="at.linkedin.com" >Austria</option>
+										<option value="bh.linkedin.com" >Bahrain</option>
+										<option value="bd.linkedin.com" >Bangladesh</option>
+										<option value="be.linkedin.com" >Belgium</option>
+										<option value="bo.linkedin.com" >Bolivia</option>
+										<option value="ba.linkedin.com" >Bosnia and Herzegovina</option>
+										<option value="br.linkedin.com" >Brazil</option>
+										<option value="bg.linkedin.com" >Bulgaria</option>
+										<option value="ca.linkedin.com" >Canada</option>
+										<option value="cl.linkedin.com" >Chile</option>
+										<option value="cn.linkedin.com" >China</option>
+										<option value="co.linkedin.com" >Colombia</option>
+										<option value="cr.linkedin.com" >Costa Rica</option>
+										<option value="hr.linkedin.com" >Croatia</option>
+										<option value="cy.linkedin.com" >Cyprus</option>
+										<option value="cz.linkedin.com" >Czech Republic</option>
+										<option value="dk.linkedin.com" >Denmark</option>
+										<option value="do.linkedin.com" >Dominican Republic</option>
+										<option value="ec.linkedin.com" >Ecuador</option>
+										<option value="eg.linkedin.com" >Egypt</option>
+										<option value="sv.linkedin.com" >El Salvador</option>
+										<option value="ee.linkedin.com" >Estonia</option>
+										<option value="fi.linkedin.com" >Finland</option>
+										<option value="fr.linkedin.com" >France</option>
+										<option value="de.linkedin.com" >Germany</option>
+										<option value="gh.linkedin.com" >Ghana</option>
+										<option value="gr.linkedin.com" >Greece</option>
+										<option value="gt.linkedin.com" >Guatemala</option>
+										<option value="hn.linkedin.com" >Honduras</option>
+										<option value="hk.linkedin.com" >Hong Kong</option>
+										<option value="hu.linkedin.com" >Hungary</option>
+										<option value="is.linkedin.com" >Iceland</option>
+										<option value="in.linkedin.com" >India</option>
+										<option value="id.linkedin.com" >Indonesia</option>
+										<option value="ir.linkedin.com" >Iran</option>
+										<option value="ie.linkedin.com" >Ireland</option>
+										<option value="il.linkedin.com" >Israel</option>
+										<option value="it.linkedin.com" >Italy</option>
+										<option value="jm.linkedin.com" >Jamaica</option>
+										<option value="jp.linkedin.com" >Japan</option>
+										<option value="jo.linkedin.com" >Jordan</option>
+										<option value="kz.linkedin.com" >Kazakhstan</option>
+										<option value="ke.linkedin.com" >Kenya</option>
+										<option value="kr.linkedin.com" >Korea</option>
+										<option value="kw.linkedin.com" >Kuwait</option>
+										<option value="lv.linkedin.com" >Latvia</option>
+										<option value="lb.linkedin.com" >Lebanon</option>
+										<option value="lt.linkedin.com" >Lithuania</option>
+										<option value="lu.linkedin.com" >Luxembourg</option>
+										<option value="mk.linkedin.com" >Macedonia</option>
+										<option value="my.linkedin.com" >Malaysia</option>
+										<option value="mt.linkedin.com" >Malta</option>
+										<option value="mu.linkedin.com" >Mauritius</option>
+										<option value="mx.linkedin.com" >Mexico</option>
+										<option value="me.linkedin.com" >Montenegro</option>
+										<option value="ma.linkedin.com" >Morocco</option>
+										<option value="np.linkedin.com" >Nepal</option>
+										<option value="nl.linkedin.com" >Netherlands</option>
+										<option value="nz.linkedin.com" >New Zealand</option>
+										<option value="ng.linkedin.com" >Nigeria</option>
+										<option value="no.linkedin.com" >Norway</option>
+										<option value="om.linkedin.com" >Oman</option>
+										<option value="pk.linkedin.com" >Pakistan</option>
+										<option value="pa.linkedin.com" >Panama</option>
+										<option value="pe.linkedin.com" >Peru</option>
+										<option value="ph.linkedin.com" >Philippines</option>
+										<option value="pl.linkedin.com" >Poland</option>
+										<option value="pt.linkedin.com" >Portugal</option>
+										<option value="pr.linkedin.com" >Puerto Rico</option>
+										<option value="qa.linkedin.com" >Qatar</option>
+										<option value="ro.linkedin.com" >Romania</option>
+										<option value="ru.linkedin.com" >Russian Federation</option>
+										<option value="sa.linkedin.com" >Saudi Arabia</option>
+										<option value="rs.linkedin.com" >Serbia</option>
+										<option value="sg.linkedin.com" >Singapore</option>
+										<option value="sk.linkedin.com" >Slovak Republic</option>
+										<option value="si.linkedin.com" >Slovenia</option>
+										<option value="za.linkedin.com" >South Africa</option>
+										<option value="es.linkedin.com" >Spain</option>
+										<option value="lk.linkedin.com" >Sri Lanka</option>
+										<option value="se.linkedin.com" >Sweden</option>
+										<option value="ch.linkedin.com" >Switzerland</option>
+										<option value="tw.linkedin.com" >Taiwan</option>
+										<option value="tz.linkedin.com" >Tanzania</option>
+										<option value="th.linkedin.com" >Thailand</option>
+										<option value="tt.linkedin.com" >Trinidad and Tobago</option>
+										<option value="tn.linkedin.com" >Tunisia</option>
+										<option value="tr.linkedin.com" >Turkey</option>
+										<option value="ug.linkedin.com" >Uganda</option>
+										<option value="ua.linkedin.com" >Ukraine</option>
+										<option value="ae.linkedin.com" >United Arab Emirates</option>
+										<option value="uk.linkedin.com" >United Kingdom</option>
+										<option value="uy.linkedin.com" >Uruguay</option>
+										<option value="ve.linkedin.com" >Venezuela</option>
+										<option value="vn.linkedin.com" >Vietnam</option>
+										<option value="zw.linkedin.com" >Zimbabwe&nbsp;</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="form-location" class="col-xs-3 control-label" style="font-weight:normal">Location</label>
+								<div class="col-xs-7 selectView">
+								  <div class="styled-select">
+									<select class="form-control" id="form-location" >
+										<option value="Greater Chicago Area" >Select Location</option>
+										<option value="Greater Chicago Area" >Greater Chicago Area</option>
+										<option value="Greater Boston Area" >Greater Boston Area</option>
+										<option value="London, United Kingdom" >London, United Kingdom</option>
+										<option value="Greater Los Angeles Area" >Greater Los Angeles Area</option>
+										<option value="Washington D.C. Metro Area" >Washington D.C. Metro Area</option>
+										<option value="Greater Denver Area" >Greater Denver Area</option>
+										<option value="Houston, Texas Area" >Houston, Texas Area</option>
+										<option value="Greater Atlanta Area" >Greater Atlanta Area</option>
+										<option value="Sydney Area, Australia" >Sydney Area, Australia</option>
+										<option value="Thailand" >Thailand</option>
+										<option value="Greater Detroit Area" >Greater Detroit Area</option>
+										<option value="Dallas/Fort Worth Area" >Dallas/Fort Worth Area</option>
+										<option value="Greater Philadelphia Area" >Greater Philadelphia Area</option>
+										<option value="Orange County, California Area" >Orange County, California Area</option>
+										<option value="New York, New York" >New York, New York</option>
+										<option value="Greater Minneapolis-St. Paul Area" >Greater Minneapolis-St. Paul Area</option>
+										<option value="Greater Seattle Area" >Greater Seattle Area</option>
+										<option value="Greater San Diego Area">Greater San Diego Area</option>
+										<option value="Singapore" >Singapore</option>
+										<option value="Phoenix, Arizona Area" >Phoenix, Arizona Area</option>
+										<option value="Miami/Fort Lauderdale Area" >Miami/Fort Lauderdale Area</option>
+										<option value="Austin, Texas Area" >Austin, Texas Area</option>
+										<option value="United Arab Emirates" >United Arab Emirates</option>
+										<option value="Melbourne Area, Australia" >Melbourne Area, Australia</option>
+										<option value="Cleveland/Akron, Ohio Area" >Cleveland/Akron, Ohio Area</option>
+										<option value="Atlanta, Georgia" >Atlanta, Georgia</option>
+										<option value="Portland, Oregon Area" >Portland, Oregon Area</option>
+										<option value="Raleigh-Durham, North Carolina Area" >Raleigh-Durham, North Carolina Area</option>
+										<option value="Greater St. Louis Area" >Greater St. Louis Area</option>
+										<option value="Tampa/St. Petersburg, Florida Area" >Tampa/St. Petersburg, Florida Area</option>
+										<option value="Orlando, Florida Area" >Orlando, Florida Area</option>
+										<option value="Charlotte, North Carolina Area" >Charlotte, North Carolina Area</option>
+										<option value="San Francisco, California" >San Francisco, California</option>
+										<option value="Cincinnati Area" >Cincinnati Area</option>
+										<option value="Indianapolis, Indiana Area" >Indianapolis, Indiana Area</option>
+										<option value="Greater Milwaukee Area" >Greater Milwaukee Area</option>
+										<option value="Mumbai Area, India" >Mumbai Area, India</option>
+										<option value="Baltimore, Maryland Area" >Baltimore, Maryland Area</option>
+										<option value="Greater Pittsburgh Area" >Greater Pittsburgh Area</option>
+										<option value="Chicago, Illinois" >Chicago, Illinois</option>
+										<option value="Columbus, Ohio Area" >Columbus, Ohio Area</option>
+										<option value="United Kingdom" >United Kingdom</option>
+										<option value="New Delhi Area, India" >New Delhi Area, India</option>
+										<option value="Kansas City, Missouri Area" >Kansas City, Missouri Area</option>
+										<option value="Greater Nashville Area" >Greater Nashville Area</option>
+										<option value="Hartford, Connecticut Area" >Hartford, Connecticut Area</option>
+										<option value="Greater Salt Lake City Area" >Greater Salt Lake City Area</option>
+										<option value="Houston, Texas" >Houston, Texas</option>
+										<option value="Finland" >Finland</option>
+										<option value="Brisbane Area, Australia" >Brisbane Area, Australia</option>
+										<option value="Bengaluru Area, India" >Bengaluru Area, India</option>
+										<option value="San Antonio, Texas Area" >San Antonio, Texas Area</option>
+										<option value="Greater Grand Rapids, Michigan Area" >Greater Grand Rapids, Michigan Area</option>
+										<option value="Perth Area, Australia" >Perth Area, Australia</option>
+										<option value="Richmond, Virginia Area" >Richmond, Virginia Area</option>
+										<option value="Greenville, South Carolina Area" >Greenville, South Carolina Area</option>
+										<option value="India" >India</option>
+										<option value="London, Greater London, United Kingdom" >London, Greater London, United Kingdom</option>
+										<option value="Denver, Colorado" >Denver, Colorado</option>
+										<option value="Jacksonville, Florida Area" >Jacksonville, Florida Area</option>
+										<option value="Rochester, New York Area" >Rochester, New York Area</option>
+										<option value="Dallas, Texas" >Dallas, Texas</option>
+										<option value="Saudi Arabia" >Saudi Arabia</option>
+										<option value="Greater Memphis Area" >Greater Memphis Area</option>
+										<option value="Sacramento, California Area" >Sacramento, California Area</option>
+										<option value="Austin, Texas" >Austin, Texas</option>
+										<option value="Charleston, South Carolina Area" >Charleston, South Carolina Area</option>
+										<option value="Johannesburg Area, South Africa" >Johannesburg Area, South Africa</option>
+										<option value="Reading, United Kingdom" >Reading, United Kingdom</option>
+										<option value="Philadelphia, Pennsylvania" >Philadelphia, Pennsylvania</option>
+										<option value="Boise, Idaho Area" >Boise, Idaho Area</option>
+										<option value="Ireland" >Ireland</option>
+										<option value="Louisville, Kentucky Area" >Louisville, Kentucky Area</option>
+										<option value="San Diego, California" >San Diego, California</option>
+										<option value="Indonesia" >Indonesia</option>
+										<option value="Hong Kong" >Hong Kong</option>
+										<option value="Los Angeles, California" >Los Angeles, California</option>
+										<option value="Madison, Wisconsin Area" >Madison, Wisconsin Area</option>
+										<option value="Guildford, United Kingdom" >Guildford, United Kingdom</option>
+										<option value="Vietnam" >Vietnam</option>
+										<option value="Seattle, Washington" >Seattle, Washington</option>
+										<option value="Israel" >Israel</option>
+										<option value="Las Vegas, Nevada Area" >Las Vegas, Nevada Area</option>
+										<option value="West Palm Beach, Florida Area" >West Palm Beach, Florida Area</option>
+										<option value="Birmingham, United Kingdom" >Birmingham, United Kingdom</option>
+										<option value="Fort Wayne, Indiana Area" >Fort Wayne, Indiana Area</option>
+										<option value="Greater Jakarta Area, Indonesia" >Greater Jakarta Area, Indonesia</option>
+										<option value="China" >China</option>
+										<option value="Greater Omaha Area" >Greater Omaha Area</option>
+										<option value="Burlington, Vermont Area" >Burlington, Vermont Area</option>
+										<option value="Norfolk, Virginia Area" >Norfolk, Virginia Area</option>
+										<option value="Greensboro/Winston-Salem, North Carolina Area" >Greensboro/Winston-Salem, North Carolina Area</option>
+										<option value="Boston, Massachusetts" >Boston, Massachusetts</option>
+										<option value="Providence, Rhode Island Area" >Providence, Rhode Island Area</option>
+										<option value="Chennai Area, India" >Chennai Area, India</option>
+										<option value="Mumbai, Maharashtra, India" >Mumbai, Maharashtra, India</option>
+										<option value="Bengaluru, Karnataka, India" >Bengaluru, Karnataka, India</option>
+										<option value="Dayton, Ohio Area" >Dayton, Ohio Area</option>
+										<option value="Région de Paris , France" >Région de Paris , France</option>
+										<option value="San Jose, California" >San Jose, California</option>
+										<option value="Buffalo/Niagara, New York Area" >Buffalo/Niagara, New York Area</option>
+										<option value="Milton Keynes, United Kingdom" >Milton Keynes, United Kingdom</option>
+										<option value="Hyderabad Area, India" >Hyderabad Area, India</option>
+										<option value="Manchester, United Kingdom" >Manchester, United Kingdom</option>
+										<option value="Geneva Area, Switzerland" >Geneva Area, Switzerland</option>
+										<option value="Gurgaon, India" >Gurgaon, India</option>
+										<option value="Scottsdale, Arizona" >Scottsdale, Arizona</option>
+										<option value="Bristol, United Kingdom" >Bristol, United Kingdom</option>
+										<option value="Paris Area, France" >Paris Area, France</option>
+										<option value="Colorado Springs, Colorado Area" >Colorado Springs, Colorado Area</option>
+										<option value="Oklahoma City, Oklahoma Area" >Oklahoma City, Oklahoma Area</option>
+										<option value="Pune Area, India" >Pune Area, India</option>
+										<option value="Toledo, Ohio Area" >Toledo, Ohio Area</option>
+										<option value="Other" >Other</option>
+										<option value="Albany, New York Area" >Albany, New York Area</option>
+										<option value="Harrisburg, Pennsylvania Area" >Harrisburg, Pennsylvania Area</option>
+										<option value="Oxford, United Kingdom" >Oxford, United Kingdom</option>
+										<option value="Chattanooga, Tennessee Area" >Chattanooga, Tennessee Area</option>
+										<option value="Miami, Florida" >Miami, Florida</option>
+										<option value="São Paulo Area, Brazil" >São Paulo Area, Brazil</option>
+										<option value="Aberdeen, United Kingdom" >Aberdeen, United Kingdom</option>
+										<option value="Washington, District Of Columbia" >Washington, District Of Columbia</option>
+										<option value="Région de Genève, Suisse" >Région de Genève, Suisse</option>
+										<option value="Brussels Area, Belgium" >Brussels Area, Belgium</option>
+										<option value="Tulsa, Oklahoma Area" >Tulsa, Oklahoma Area</option>
+										<option value="Pakistan" >Pakistan</option>
+										<option value="Allentown, Pennsylvania Area" >Allentown, Pennsylvania Area</option>
+										<option value="Kalamazoo, Michigan Area" >Kalamazoo, Michigan Area</option>
+										<option value="Amsterdam Area, Netherlands" >Amsterdam Area, Netherlands</option>
+										<option value="Charlotte, North Carolina" >Charlotte, North Carolina</option>
+										<option value="Syracuse, New York Area" >Syracuse, New York Area</option>
+										<option value="Knoxville, Tennessee Area" >Knoxville, Tennessee Area</option>
+										<option value="Adelaide Area, Australia" >Adelaide Area, Australia</option>
+										<option value="Columbia, South Carolina Area" >Columbia, South Carolina Area</option>
+										<option value="Noida Area, India" >Noida Area, India</option>
+										<option value="Greater New Orleans Area" >Greater New Orleans Area</option>
+										<option value="Philippines" >Philippines</option>
+										<option value="Brooklyn, New York" >Brooklyn, New York</option>
+										<option value="Egypt" >Egypt</option>
+										<option value="Slough, >Slough, United Kingdom</option>
+										<option value="Shanghai City, China" >Shanghai City, China</option>
+										<option value="Twickenham, United Kingdom" >Twickenham, United Kingdom</option>
+										<option value="Lancaster, Pennsylvania Area" >Lancaster, Pennsylvania Area</option>
+										<option value="Cape Town Area, South Africa" >Cape Town Area, South Africa</option>
+										<option value="Portland, Oregon" >Portland, Oregon</option>
+										<option value="Glasgow, United Kingdom" >Glasgow, United Kingdom</option>
+										<option value="Qatar" >Qatar</option>
+										<option value="Provo, Utah Area" >Provo, Utah Area</option>
+										<option value="Des Moines, Iowa Area" >Des Moines, Iowa Area</option>
+										<option value="Orlando, Florida" >Orlando, Florida</option>
+										<option value="Lansing, Michigan Area" >Lansing, Michigan Area</option>
+										<option value="Brighton, United Kingdom" >Brighton, United Kingdom</option>
+										<option value="Edinburgh, United Kingdom" >Edinburgh, United Kingdom</option>
+										<option value="Boulder, Colorado" >Boulder, Colorado</option>
+										<option value="Portland, Maine Area" >Portland, Maine Area</option>
+										<option value="Leeds, United Kingdom" >Leeds, United Kingdom</option>
+										<option value="Coventry, United Kingdom" >Coventry, United Kingdom</option>
+										<option value="Antwerp Area, Belgium" >Antwerp Area, Belgium</option>
+										<option value="Lexington, Kentucky Area" >Lexington, Kentucky Area</option>
+										<option value="Alpharetta, Georgia" >Alpharetta, Georgia</option>
+										<option value="Kingston upon Thames, United Kingdom" >Kingston upon Thames, United Kingdom</option>
+										<option value="Newcastle upon Tyne, United Kingdom" >Newcastle upon Tyne, United Kingdom</option>
+										<option value="Southampton, United Kingdom" >Southampton, United Kingdom</option>
+										<option value="Huntsville, Alabama Area" >Huntsville, Alabama Area</option>
+										<option value="Cambridge, United Kingdom" >Cambridge, United Kingdom</option>
+										<option value="Macon, Georgia Area" >Macon, Georgia Area</option>
+										<option value="San Antonio, Texas" >San Antonio, Texas</option>
+										<option value="Pune, Maharashtra, India" >Pune, Maharashtra, India</option>
+										<option value="Pittsburgh, Pennsylvania" >Pittsburgh, Pennsylvania</option>
+										<option value="Munich Area, Germany" >Munich Area, Germany</option>
+										<option value="Украина" >Украина</option>
+										<option value="Sarasota, Florida Area" >Sarasota, Florida Area</option>
+										<option value="Cambridge, Massachusetts" >Cambridge, Massachusetts</option>
+										<option value="Cleveland, Ohio" >Cleveland, Ohio</option>
+										<option value="France" >France</option>
+										<option value="Las Vegas, Nevada" >Las Vegas, Nevada</option>
+										<option value="Derby, United Kingdom" >Derby, United Kingdom</option>
+										<option value="Tucson, Arizona Area" >Tucson, Arizona Area</option>
+										<option value="Campinas Area, Brazil" >Campinas Area, Brazil</option>
+										<option value="Minneapolis, Minnesota" >Minneapolis, Minnesota</option>
+										<option value="Boca Raton, Florida" >Boca Raton, Florida</option>
+										<option value="Nottingham, United Kingdom" >Nottingham, United Kingdom</option>
+										<option value="Région de Basel , Suisse" >Région de Basel , Suisse</option>
+										<option value="NCR - National Capital Region, Philippines" >NCR - National Capital Region, Philippines</option>
+										<option value="Zürich Area, Switzerland" >Zürich Area, Switzerland</option>
+										<option value="Kenya" >Kenya</option>
+										<option value="Mountain View, California" >Mountain View, California</option>
+										<option value="Queensland, Australia" >Queensland, Australia</option>
+										<option value="Youngstown, Ohio Area" >Youngstown, Ohio Area</option>
+										<option value="Leicester, United Kingdom" >Leicester, United Kingdom</option>
+										<option value="Phoenix, Arizona" >Phoenix, Arizona</option>
+										<option value="Tampa, Florida" >Tampa, Florida</option>
+										<option value="Hemel Hempstead, United Kingdom" >Hemel Hempstead, United Kingdom</option>
+										<option value="Springfield, Massachusetts Area" >Springfield, Massachusetts Area</option>
+										<option value="Indianapolis, Indiana" >Indianapolis, Indiana</option>
+										<option value="Albuquerque, New Mexico Area" >Albuquerque, New Mexico Area</option>
+										<option value="Wichita, Kansas Area" >Wichita, Kansas Area</option>
+										<option value="Little Rock, Arkansas Area" >Little Rock, Arkansas Area</option>
+										<option value="Panama" >Panama</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-offset-4 col-xs-3" style="margin-top:10px;margin-left: 95px;">
+								<button type="submit" id="btn_search" class="btn  btn-primary" style="color: #fff;background-color: #f2603e;border-color: #f2603e; text-transform: capitalize;font-weight: 400;">Search</button>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane " id="keyword" style="margin-top: 10px;">
+							<form role="form" class="form-horizontal" novalidate="novalidate">
+								<div class="form-group">
+									<div class="col-xs-12">
+										<p style="opacity:0.95;margin-bottom:15px;margin-left: 2px;">
+
+										Identify LinkedIn profiles and companies from Google, based on any keywords and add them to your leads database, to increase your sales.
+									</p>
+									</div>
+									<label for="searchWord" class="col-xs-3 control-label" style="font-weight:normal">Keyword</label>
+									<div class="col-xs-7">
+										<input type="text" class="form-control" id="any_key_word" name="first_name" placeholder="Any Keyword">
+										<div id="result_keyword"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="form-country" class="col-xs-3 control-label" style="font-weight:normal">Search by</label>
+									<div class="col-xs-7 selectView">
+										<div class="styled-select">
+										<select class="form-control select" id="form_manager1" >
+											<option value="search_contact_in_google" >Contacts</option>
+											<option value="search_company_in_google" >Companies</option>
+										</select>
+										</div>
+										<div id="result_select_item"></div>
+									</div>
+								</div>
+							    <div class="col-xs-offset-4 col-xs-3" style="margin-top: 10px;margin-left: 95px;">
+									<button type="button" id="btn_search_keyword" class="btn  btn-primary" style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;font-weight: 400;">Search</button>
+								</div>
+							</form>
+					</div>
+		</div>
+	</div>
+</script>
+<script type="text/html" id="ln-company-template">
+				<div style="margin-left: 10px">Add Company</div>
+				<form class="form-horizontal" id="add_company" role="form" style="padding:20px;margin-bottom: 30px;">
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Name </label>
+					<div class="col-xs-9">
+					<input name='name' type='text' class='_engagebay_inp form-control' required value='{{company}}' placeholder='Company Name'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Company Domain </label>
+					<div class="col-xs-9">
+					<input name='url' type='text' class='_engagebay_inp form-control' value='{{url}}' placeholder='example.com' >
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Email </label>
+					<div class="col-xs-9">
+					<input name='email' type='text' class='_engagebay_inp form-control' placeholder='Email Address'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Phone No </label>
+					<div class="col-xs-9">
+					<input name='phone' data-subtype='mobile' type='text' class='_engagebay_inp form-control' placeholder='Mobile No.'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">LinkedIn </label>
+					<div class="col-xs-9">
+					<input name='linkedin' data-subtype='LINKEDIN' type='text' class='_engagebay_inp form-control' value='{{linkedin}}' placeholder='Facebook page'>
+					</div>
+				</div>
+				
+					<div id="crm_others123"></div>
+
+					<div class="text-left">
+						<div class="col-xs-3"></div>
+						<div class="col-xs-9 form-actions linked-forms-btn" style="padding-left: 10px;">
+							<span type='button'  value='Save' class='_engagebay_save_ btn  btn-primary' id="company_save" style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;">
+							Save</span>
+						</div>
+					</div>
+				</form>
+		</script>
+
+
+<script type="text/template" id="contacts-container-template">
+
+<div style="margin-bottom: 10px;"><input id="contactSearchField" class="form-control"  placeholder="Search"></div>
+
+	<div id="contactsContent">
+		<img style="padding:10px;" src="../images/f-loader.gif" />
+	</div>	
+
+</script>
+
+<script type='text/template' id='linkedin-fetch-active-template'>
+				<div id="fetch_data" style="margin-top: 13px;text-align:left"><div style="padding-left: 9px;"> Scrape all the profile details from the opened linkedIn page </div><br/>
+								&nbsp; <input type='button' value='Scrape Data' class="btn  btn-primary" id='linkedinDataFetch' data-tabId='{{tabId}}'  style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;margin-left: 3px;">
+				
+				</div>			
+</script>
+
+	<script type="text/template" id="contact-multiple-add-twitter-template">
+				<div style="margin-left: 10px">Add Company</div>
+				{{#if content}}
+					<div class="table table-condensed table-hover" style="margin: 0px 0;">
+						
+						{{#each content}}
+				<form class="form-horizontal" id = "form-{{formId}}" role="form" style="height: 100%;">
+				<div class="form-group form-group-sm">
+					<div class="col-xs-9">
+					<input name='first_name' type='text' class='_engagebay_inp form-control hidden' value='{{firstName}}' placeholder='First Name' style="margin-botton:5px;">
+					<input name='last_name' type='text' class='_engagebay_inp form-control hidden' value='{{lastName}}' placeholder='Last Name'>
+					<input name='image' type='text' class='_engagebay_inp form-control hidden' value='{{image}}' placeholder='image'>
+					<input name='website' data-subtype='URL' type='text' class='_engagebay_inp form-control hidden' value='{{website}}' placeholder='http(s)://*'>
+					<input name='website' data-subtype='TWITTER' type='text' class='_engagebay_inp form-control hidden' value='{{twitter}}' placeholder='Twitter Id'>
+					{{#if facebook}}
+					<input name='website' data-subtype='FACEBOOK' type='text' class='_engagebay_inp form-control hidden' value='{{facebook}}' placeholder='Facebook page'>
+				    {{/if}}
+				    {{#if linkedin}}
+					<input name='website' data-subtype='LINKEDIN' type='text' class='_engagebay_inp form-control hidden' value='{{linkedin}}' placeholder='Facebook page'>
+				    {{/if}}
+					</div>
+				</div>
+				<div style="margin: 10px;"><img class="avatar js-action-profile-avatar  " src="{{image}}" style="height: 35px;width: 35px;float: left;    border-radius: 3px;"></div>
+				<div style="margin-top: -7px;display: inline-block;margin-left: 10px;">{{firstName}} {{lastName}}</div>
+				<p class="text-muted" style="margin-bottom: 0px !important;margin-left: 55px">{{twitter}}</p>
+					<div class="linked-forms-btn" style="display: inline-block;margin-bottom: -9px;margin-top: 3px;">
+						<span type='submit' value='Add Contact' class='_enggebayio_save_ save btn btn-xs btn-primary'       id = '{{formId}}' style="float: left;margin-left: -55px;margin-bottom: 10px;font-size: 11px;">
+						Save</span>
+					</div>
+				</form>
+
+						{{/each}}
+					</div>
+				{{/if}}
+			</script>
+
+<script type='text/template' id='twitter-multiple-fetch-active-template'>
+				<div id="fetch_data" style="margin-top: 13px;text-align:left">
+				<div style="padding-left: 9px;"> Scrape all the profile details from the opened twitter page  </div><br/>
+				 <input type='button' value='Scrape Data' class="btn  btn-primary" id='twitterMultipleDataFetch' data-tabId='{{tabId}}' style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;margin-left: 8px;"></div>			
+</script>
+
+<script type='text/template' id='twitter-fetch-active-template'>
+	<div id="fetch_data" style="margin-top: 13px;text-align:left">
+	<div style="padding-left: 9px;"> Scrape all the profile details from the opened twitter page  </div><br/>
+	 <input type='button' value='Scrape Data' class="btn btn-primary" id='twitterDataFetch' data-tabId='{{tabId}}' style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;margin-left: 8px;"></div>			
+</script>
+
+<script type="text/html" id="add-deal-form-template">
+		<div style="margin-left: 10px">Add Deal</div>
+		<form class="form-horizontal" name="deal_form"  role="form" id="add_deal_form" style="padding: 20px;margin-bottom:150px;">
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Name <span class="ab-field-required">*</span></label>
+				<div class="col-xs-9">
+					<input name='name' type='text' class='_engagebay_inp form-control' placeholder='Deal Name' required >
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Amount <span class="ab-field-required">*</span></label>
+				<div class="col-xs-9">
+					<input name='amount' type='number' class='_engagebay_inp form-control'  placeholder='Amount' required >
+				</div>
+			</div>
+
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Track</label>
+				<div class="col-xs-9">
+					<select class="form-control selectpicker" data-style="btn-primary" id="track" name="track_name">
+								
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Milestone </label>
+				<div class="col-xs-9">
+					<select class="form-control" id="milestone" name="milestoneActualName">
+					
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Close Date</label>
+					<div class="col-xs-9">
+						<input name='closed_date' id='closed_date' type='text' class='_engagebay_inp form-control datePicker'  placeholder='Close Date' >
+					</div>
+			</div>
+			<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Owner <span class="ab-field-required">*</span></label>
+					<div class="col-xs-9">
+						<select class="form-control" id="owner_id" name="owner_id" required="">
+
+						</select>
+					</div>
+			</div>
+
+			<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Related To</label>
+					<div class="col-xs-9">
+						<input name='realtedTo' id='realtedTo' type='email' class='_engagebay_inp form-control datePicker'  placeholder='Related Contact Email' >
+					</div>
+			</div>
+			
+			<div id="crm_others123"></div>
+			<div class="text-left">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-9 form-actions linked-forms-btn" style="padding-left: 10px;">
+						<div  value='Save' class='_engagebay_save_ btn btn-primary' id="send_deal" style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;padding-right: 10px;padding-left:10px;">
+							Save
+						</div>
+					</div>
+			</div>
+		</form>	
+</script>
+<script type="text/html" id="add-company-form-template">
+		<div style="margin-left: 10px">Add Company</div>
+		<form class="form-horizontal" name="company_form"  role="form" id="add_company_form" style="padding: 20px;margin-bottom:150px;">
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Name <span class="ab-field-required">*</span></label>
+				<div class="col-xs-9">
+					<input name='name' type='text' class='_engagebay_inp form-control'  placeholder='Company Name' required >
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Domain</label>
+				<div class="col-xs-9">
+					<input name='url' type='url' class='_engagebay_inp form-control'  placeholder='Company Domain' >
+				</div>
+			</div>
+
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Related Contact</label>
+				<div class="col-xs-9">
+					<input name='realtedTo' type='email' class='_engagebay_inp form-control'  placeholder='Related Contact'  >
+				</div>
+			</div>
+			
+			<div id="crm_others123"></div>
+			<div class="text-left">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-9 form-actions linked-forms-btn" style="padding-left: 10px;">
+						<div  value='Save' class='_engagebay_save_ btn btn-primary' id="send_company" style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;padding-right: 10px;padding-left:10px;">
+							Save
+						</div>
+					</div>
+			</div>
+		</form>	
+</script>
+
+
+<script type="text/html" id="add-task-form-template">
+		<div style="margin-left: 10px">Add Task</div>
+		<form class="form-horizontal" name="task_form"  role="form" id="add_task_form" style="padding: 20px;margin-bottom:150px;">
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Name <span class="ab-field-required">*</span></label>
+				<div class="col-xs-9">
+					<input name='name' type='text' class='_engagebay_inp form-control' value='{{name}}' placeholder='Task Name' required >
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Status</label>
+				<div class="col-xs-9">
+					<select class="form-control selectpicker" data-style="btn-primary" id="category" name="task_milestone">
+								<option value="not_started">Not Started</option>
+								<option value="in_progress">In Progress</option>
+								<option value="waiting">Waiting</option>
+								<option value="completed">Completed</option>
+								<option value="deferred">Deferred</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Type </label>
+				<div class="col-xs-9">
+							<select class="form-control" id="Task_type" name="type">
+								
+							</select>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Due Date <span class="ab-field-required">*</span></label>
+					<div class="col-xs-9">
+						<input name='closed_date' id='closed_date' type='text' class='_engagebay_inp form-control datePicker'  placeholder='Due Date' required >
+					</div>
+			</div>
+			<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Owner <span class="ab-field-required">*</span></label>
+					<div class="col-xs-9">
+						<select class="form-control" id="owner_id" name="owner_id" required="">
+
+						</select>
+					</div>
+			</div>
+			<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Related To</label>
+					<div class="col-xs-9">
+						<input name='realtedTo' id='realtedTo' type='email' class='_engagebay_inp form-control datePicker'  placeholder='Related Contact Email' >
+					</div>
+			</div>
+			
+			<div id="crm_others123"></div>
+			<div class="text-left">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-9 form-actions linked-forms-btn" style="padding-left: 10px;">
+						<div  value='Save' class='_engagebay_save_ btn btn-primary' id="send_task" style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;padding-right: 10px;padding-left:10px;">
+							Save
+						</div>
+					</div>
+			</div>
+		</form>	
+</script>
+
+<script type="text/html" id="add-contact-form-template">
+		<div style="margin-left: 10px">Add Contact</div>
+		<form class="form-horizontal" name="save_contact"  role="form" id="save_contact" style="padding: 20px;margin-bottom: 30px;">
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">First Name <span class="ab-field-required">*</span></label>
+				<div class="col-xs-9">
+					<input name='name' type='text' class='_engagebay_inp form-control' value='{{firstName}}' placeholder='First Name' required >
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Last Name</label>
+				<div class="col-xs-9">
+					<input name='last_name' type='text' class='_engagebay_inp form-control' value='{{lastName}}' placeholder='Last Name'  >
+				</div>
+			</div>
+			
+			<div class="form-group form-group-sm">
+				<label class="col-xs-3 control-label">Email </label>
+				<div class="col-xs-9">
+				<input name='email' type='text' class='_engagebay_inp form-control' value='{{email}}' placeholder='Email Address'>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Tags </label>
+					<div class="col-xs-9">
+					<input autocomplete='off' name='tags' type='text' class='_engagebay_inp form-control' value='{{tags}}' placeholder='Separate Tags using Comma'>
+					</div>
+			</div>
+			<div id="crm_others123"></div>
+			<div class="text-left">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-9 form-actions linked-forms-btn" style="padding-left: 10px;">
+						<div  value='Save' class='_engagebay_save_ btn btn-primary' id="send_contact" style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;padding-right: 10px;padding-left:10px;">
+							Save
+						</div>
+					</div>
+			</div>
+		</form>
+</script>
+
+
+<script type="text/html" id="contact-add-template">
+				<div style="margin-left: 10px">Add Contact</div>
+				<form class="form-horizontal" name="add_contact"  role="form" id="add_contact" style="padding: 20px;margin-bottom: 30px;">
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">First Name </label>
+					<div class="col-xs-9">
+					<input name='first_name' type='text' class='_engagebay_inp form-control' value='{{firstName}}' placeholder='First Name' required >
+					
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Last Name </label>
+					<div class="col-xs-9">
+					<input name='last_name' type='text' class='_engagebay_inp form-control' value='{{lastName}}' placeholder='Last Name' >
+					
+					</div>
+				
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Company </label>
+					<div class="col-xs-9">
+					<input name='company' type='text' class='_engagebay_inp form-control' value='{{company}}' placeholder='Company'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Role </label>
+					<div class="col-xs-9">
+					<input name='role' type='text' class='_engagebay_inp form-control' value='{{role}}' placeholder='Role'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Email </label>
+					<div class="col-xs-9">
+					<input name='email' type='text' class='_engagebay_inp form-control' value='{{email}}' placeholder='Email Address'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Tags </label>
+					<div class="col-xs-9">
+					<input autocomplete='off' name='tags' type='text' class='_engagebay_inp form-control' value='{{tags}}' placeholder='Separate Tags with Comma'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Mobile </label>
+					<div class="col-xs-9">
+					<input name='phone' data-subtype='mobile' type='text' class='_engagebay_inp form-control' value='{{mobile}}' placeholder='Mobile Number'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Website </label>
+					<div class="col-xs-9">
+					<input name='website' data-subtype='URL' type='text' class='_engagebay_inp form-control' value='{{url}}' placeholder='http(s)://*'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Skype </label>
+					<div class="col-xs-9">
+					<input name='website' data-subtype='SKYPE' type='text' class='_engagebay_inp form-control' value='{{skype}}' placeholder='Skype ID'>
+					</div>
+				</div>
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Twitter </label>
+					<div class="col-xs-9">
+					<input name='website' data-subtype='TWITTER' type='text' class='_engagebay_inp form-control' value='{{twitter}}' placeholder='Twitter ID'>
+					</div>
+				</div>
+				{{#if facebook}}
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Facebook </label>
+					<div class="col-xs-9">
+					<input name='website' data-subtype='FACEBOOK' type='text' class='_engagebay_inp form-control' value='{{facebook}}' placeholder='Facebook Page'>
+					</div>
+				</div>
+				{{/if}}
+				{{#if linkedin}}
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">LinkedIn </label>
+					<div class="col-xs-9">
+					<input name='website' data-subtype='LINKEDIN' type='text' class='_engagebay_inp form-control' value='{{linkedin}}' placeholder='Linkedin Page'>
+					</div>
+				</div>
+				{{/if}}
+				<div class="form-group form-group-sm">
+					<label class="col-xs-3 control-label">Address </label>
+					<div class="col-xs-9">
+					<input name='addressCity' type='text' class='_engagebay_inp_custom address form-control' value='{{addressCity}}' placeholder='Address City'>
+					<input style="margin-top: 10px;" name='addressState' type='text' class='_engagebay_inp_custom address form-control' value='{{addressState}}' placeholder='Address State'>
+					<div class="selectView" style="margin-top: 10px;">
+						<div class="styled-select">
+								<select id="addressCountry" name='addressCountry' class='_engagebay_inp_custom address form-control'>
+								{{{countrycode addressCountry }}}
+								</select>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div class="form-group form-group-sm hidden">
+					<label class="col-xs-3 control-label">Image </label>
+					<div class="col-xs-9">
+					<input name='image' type='text' class='_engagebay_inp form-control' value='{{image}}' placeholder='Image Address'>
+					</div>
+				</div>
+				<div id="crm_others123"></div>
+					<div class="text-left">
+						<div class="col-xs-3"></div>
+						<div class="col-xs-9 form-actions linked-forms-btn" style="padding-left: 10px;">
+							<div  value='Save' class='_engagebay_save_ btn btn-primary' id="contact_save" style="color: #fff;background-color: #f2603e;border-color: #f2603e;text-transform: capitalize;">
+							Save</div>
+						</div>
+					</div>
+					
+				</form>
+		</script>
+	
+<script type="text/template" id="contacts-template">
+
+ {{#if this.length}} 
+{{#each this}}
+
+<div class="notifications-content contact-details" data-id="{{id}}">
+
+	<div class="gravatar-intial-img" data-name="{{getPropertyValue properties "name"}} {{getPropertyValue properties "last_name"}}" data-email="{{email}}" style="position: absolute; width: 40px;">
+
+	</div>
+
+	<div class="no-left-padding" style="padding-left: 45px;">
+
+		<div
+			style="font-size: 14px; font-weight: 500; color: #909090; text-shadow: none;overflow: hidden;text-overflow: ellipsis;">
+			{{getPropertyValue properties "name"}} {{getPropertyValue properties "last_name"}}</div>
+
+		<div style="overflow: hidden;text-overflow: ellipsis;">{{email}}</div>
+
+	<!--
+
+		<div>
+			<div class="add-to-sequence-popup popover__wrapper"
+				>
+				<span class="addToSequence"><img src="../images/sequence.jpg"
+					style="height: 15px;"> </span>
+
+				<div class="push popover__content add-to-sequence-popup-content">
+
+				</div>
+			</div>
+
+			<div class="add-to-list-popup popover__wrapper">
+				<span class="addToList"><img src="../images/list.png"
+					style="height: 15px;"> </span>
+
+				<div class="push popover__content add-to-list-popup-content"></div>
+			</div>
+		</div>
+		
+		-->
+
+	</div>
+
+</div>
+
+
+{{/each}} {{else}}
+
+<div class="empty-pad-content-container block-pad-contnt open ">
+				   <div class="padcontent-image-container"><img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/padcontent/contact-list.svg"></div>
+				   <div class="pad-help-block-container">
+				   <div class="padcontent-help-block">
+			   			<h4 class="info-text text-left">Contacts</h4>
+			   			<p class="pad-text">
+							Contacts are people you would like to be engage and stay connected for your business. 
+						</p>
+				   		
+				   				<div class="">
+					   		   		<div class="ab-pad-top-20">
+					   		   			<!-- Import Subscribers Options -->
+										<div class="ab-inline-block xs-ml-5" id="import_subscribers_container"></div>
+										<a href="https://{{getAuthDetails "domain_name"}}.engagebay.com#list/0/subscribers" target="_blank" class="btn btn-warning">Create Contact</a>
+					   				</div>
+				   		   		</div>
+				   		</div>
+				   </div>
+			</div>
+
+{{/if}}
+
+	</script>
+	
+
+		<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js'></script>
+	<script src='../js/popup.js'></script>
+
+
+</body>
+</html>
