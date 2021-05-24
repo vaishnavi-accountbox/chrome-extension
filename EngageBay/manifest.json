@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Free Email Tracker for Gmail - EngageBay",
 	"short_name": "EngageBay Email Tracker",
-	"version": "1.5.9",
+	"version": "1.6.0",
 	"description": "Free Email tracker and lead generator. Scrape leads directly from LinkedIn and add them in EngageBay to grow your business",
 	"homepage_url": "https://engagebay.com",
 	"browser_action": {
