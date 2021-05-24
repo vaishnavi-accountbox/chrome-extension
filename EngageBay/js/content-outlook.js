@@ -540,40 +540,30 @@ function initializeComposeViewEvents($composeView) {
 																		'data-t-id');
 														// console.log(templateId);
 														// console.log("outlook1");
-														$
-																.each(
-																		templateData,
-																		function(
-																				index,
-																				data) {
-																			// console.log(data.id);
-																			// console.log("outlook2");
-																			if (data.id == templateId) {
-																				// console.log(data.id);
-																				// console.log("outlook3");
-																				var $appendEle = $composeView
-																						.find(OUTLOOK_VIEW_REFERENCE_ELEMENTS[SERVICE_TYPE].compose_view_content_container_id);
-																				// console.log($appendEle);
-																				// console.log("outlook4");
-																				try {
-																					$appendEle
-																							.prepend('<div>'
-																									+ data.email_body
-																									+ '</div>');
-																				} catch (err) {
-																					console
-																							.log(err.message);
-																				}
+														var data = engageBayGetEmailTemplateByCategory(templateId, templateData);
+														if(data) {
+															// console.log(data.id);
+															// console.log("outlook3");
+															var $appendEle = $composeView
+																	.find(OUTLOOK_VIEW_REFERENCE_ELEMENTS[SERVICE_TYPE].compose_view_content_container_id);
+															// console.log($appendEle);
+															// console.log("outlook4");
+															try {
+																$appendEle
+																		.prepend('<div>'
+																				+ data.email_body
+																				+ '</div>');
+															} catch (err) {
+																console
+																		.log(err.message);
+															}
 
-																				$emailTempPopup
-																						.remove();
+															$emailTempPopup
+																	.remove();
 
-																				$appendEle
-																						.focus();
-
-																				return false;
-																			}
-																		});
+															$appendEle
+																	.focus();
+														}
 
 													});
 
@@ -583,6 +573,29 @@ function initializeComposeViewEvents($composeView) {
 
 					});
 
+}
+
+function engageBayGetEmailTemplateByCategory(templateId, templateData){
+var tempData = null;
+$.each(
+		templateData,
+		function(
+				index,
+				data) {
+			if (data.id == templateId) {
+				tempData = data;
+			}
+			else if(data.template_type == "FOLDER" && data.folderTemplatesList && data.folderTemplatesList.length > 0)
+			{
+				$.each(data.folderTemplatesList, function(index2, data2) {
+					if (data2.id == templateId) {
+						tempData = data2;
+					}
+				});
+			}
+		});
+
+	return tempData;
 }
 
 var OUTLOOK_VIEW_REFERENCE_ELEMENTS = {

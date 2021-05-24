@@ -503,50 +503,43 @@ function EBinitializeEventsOnComposeView(composeView) {
 														var templateId = $(this)
 																.attr(
 																		'data-t-id');
-														$
-																.each(
-																		templateData,
-																		function(
-																				index,
-																				data) {
-																			if (data.id == templateId) {
-																				
-																				// fill subject
-																				if(data.subject)
-																					composeView.setSubject(data.subject);
-																				
-																				var torecipients = composeView.getToRecipients();
-																				if(torecipients && torecipients.length == 1){
+														
+														var data = engageBayGetEmailTemplateByCategory(templateId, templateData);
+														if(data){
+															// fill subject
+															if(data.subject)
+																composeView.setSubject(data.subject);
+															
+															var torecipients = composeView.getToRecipients();
+															if(torecipients && torecipients.length == 1){
 
-																					// Fetch subscriber
-																					_EB_Request_Processor("/api/browser-extension/get-compiled-email-content", 
-																							{subject: data.subject, email: torecipients[0].emailAddress, email_body : data.email_body}, "POST", function(response) {
-																								
-																								if(response && response.subject)
-																									composeView.setSubject(response.subject);
-																								
-																								if(response && response.email_body)
-																										composeView.setBodyHTML(response.email_body);
-																								else{
-																									composeView.setBodyHTML(data.email_body);
-																								}
-
-																					}, function(err) {
-																						// console.log(err);
-																						composeView.setBodyHTML(data.email_body);
-																					});
-																					
-																				
-																				}else{
-																					composeView
-																					.setBodyHTML(data.email_body);
-																				}
-																				
-																				modal
-																						.close();
-																				return false;
+																// Fetch subscriber
+																_EB_Request_Processor("/api/browser-extension/get-compiled-email-content", 
+																		{subject: data.subject, email: torecipients[0].emailAddress, email_body : data.email_body}, "POST", function(response) {
+																			
+																			if(response && response.subject)
+																				composeView.setSubject(response.subject);
+																			
+																			if(response && response.email_body)
+																					composeView.setBodyHTML(response.email_body);
+																			else{
+																				composeView.setBodyHTML(data.email_body);
 																			}
-																		});
+
+																}, function(err) {
+																	// console.log(err);
+																	composeView.setBodyHTML(data.email_body);
+																});
+																
+															
+															}else{
+																composeView
+																.setBodyHTML(data.email_body);
+															}
+															
+															modal
+																	.close();
+														}
 
 													});
 									
@@ -726,6 +719,29 @@ function EBinitializeEventsOnComposeView(composeView) {
 						
 					});
 
+}
+
+function engageBayGetEmailTemplateByCategory(templateId, templateData){
+var tempData = null;
+$.each(
+		templateData,
+		function(
+				index,
+				data) {
+			if (data.id == templateId) {
+				tempData = data;
+			}
+			else if(data.template_type == "FOLDER" && data.folderTemplatesList && data.folderTemplatesList.length > 0)
+			{
+				$.each(data.folderTemplatesList, function(index2, data2) {
+					if (data2.id == templateId) {
+						tempData = data2;
+					}
+				});
+			}
+		});
+
+	return tempData;
 }
 
 function engageBaySaveSentEmailThreadIdsInStorage(threadId, messageId,
