@@ -5,6 +5,30 @@
 	}
 	return parentUrl;
 }*/
+
+function initEngagebay() {
+
+	$('body').removeClass('eb-validated');
+	$('.syncToEngagebay').remove();
+
+	load();
+
+	function load() {
+
+		loadEngagebay();
+
+		setTimeout(function() {
+
+			if (!$('body').hasClass('eb-validated')
+					|| $('.syncToEngagebay').length == 0) {
+				load();
+			}
+
+		}, 1000);
+
+	}
+}
+
 function loadEngagebay() {
 
 	var host_location = window.location.host;
@@ -12,8 +36,20 @@ function loadEngagebay() {
 	// var parenturl = getWindowParentUrl();
 	// console.log("parenturl", parenturl);
 
-	if (window.location.pathname.indexOf("/search/") == 0)
+	if (window.location.pathname.indexOf("/search/") == 0) {
+		if ($(".engagebay-resources").length == 0) {
+			$(
+					"<style type='text/css' class='engagebay-resources'>.syncToEngagebay.disabled{opacity:0.7;} .syncToEngagebay.disabled .loader{display:inline;}.syncToEngagebay .loader{display:none;height: 10px;width: auto;vertical-align: middle;padding-left: 5px;}</style>")
+					.appendTo("head");
+			$(
+					"<style type='text/css' class='engagebay-resources'>#global-nav-search {padding: 10px !important;} .pv-profile-wrapper .profile-view-grid{margin-top:70px !important;} .search-filters-bar.display-flex, .message, #self-profile-settings-gear, #secondary-nav-list, .pv-s-profile-actions, .ad-banner-container, .message-anywhere-button, .profile-actions__overflow, .search-s-rail.right-rail, .global-footer, .extended-nav.nav-main-container nav, #ember33.ember-view .container-with-shadow.p3, .msg-overlay-list-bubble, #launchpad-wormhole{display: none !important;} .search-form__go-back-button,.sub-nav,.search-form__open-filters-button{display:none !important;} #_engagebay_extn_linkedinengagebay_iframe{ display:none !important;} </style>")
+					.appendTo("head");
+			$(
+					"<style type='text/css' class='engagebay-resources'>.engagebayContactAdd, .global-nav__nav, .global-nav__primary-items, .scaffold-layout-toolbar, .scaffold-layout__ad, .global-footer, .msg-overlay-container { display: none !important; } </style>")
+					.appendTo("head");
+		}
 		return;
+	}
 
 	setTimeout(
 			function() {
@@ -24,12 +60,9 @@ function loadEngagebay() {
 							&& $('.syncToEngagebay').length > 0)
 						return;
 
-					$(".engagebay-resources").remove();
 					$('.syncToEngagebay').remove();
 
 					$('body').addClass('eb-validated');
-
-					// $('.engagebay-resources').remove();
 
 					setInterval(function() {
 						if ($('.snap-search-bar').length > 0
@@ -39,13 +72,17 @@ function loadEngagebay() {
 						}
 					}, 1000);
 
-					$(
-							"<style type='text/css' class='engagebay-resources'>.syncToEngagebay.disabled{opacity:0.7;} .syncToEngagebay.disabled .loader{display:inline;}.syncToEngagebay .loader{display:none;height: 10px;width: auto;vertical-align: middle;padding-left: 5px;}</style>")
-							.appendTo("head");
-					;
-					$(
-							"<style type='text/css' class='engagebay-resources'>#global-nav-search {padding: 10px !important;} .engagebayContactAdd, .global-nav__nav{ display: none !important; } .search-global-typeahead__content { display: none !important; } .pv-profile-wrapper .profile-view-grid{margin-top:70px !important;} .search-filters-bar.display-flex, .message, #self-profile-settings-gear, #secondary-nav-list, .pv-s-profile-actions, .ad-banner-container, .message-anywhere-button, .profile-actions__overflow, .search-s-rail.right-rail, .global-footer, .extended-nav.nav-main-container nav, #ember33.ember-view .container-with-shadow.p3, .msg-overlay-list-bubble, #launchpad-wormhole{display: none !important;} .search-form__go-back-button,.sub-nav,.search-form__open-filters-button{display:none !important;} #_engagebay_extn_linkedinengagebay_iframe{ display:none !important;} </style>")
-							.appendTo("head");
+					if ($(".engagebay-resources").length == 0) {
+						$(
+								"<style type='text/css' class='engagebay-resources'>.syncToEngagebay.disabled{opacity:0.7;} .syncToEngagebay.disabled .loader{display:inline;}.syncToEngagebay .loader{display:none;height: 10px;width: auto;vertical-align: middle;padding-left: 5px;}</style>")
+								.appendTo("head");
+						$(
+								"<style type='text/css' class='engagebay-resources'>#global-nav-search {padding: 10px !important;} .pv-profile-wrapper .profile-view-grid{margin-top:70px !important;} .search-filters-bar.display-flex, .message, #self-profile-settings-gear, #secondary-nav-list, .pv-s-profile-actions, .ad-banner-container, .message-anywhere-button, .profile-actions__overflow, .search-s-rail.right-rail, .global-footer, .extended-nav.nav-main-container nav, #ember33.ember-view .container-with-shadow.p3, .msg-overlay-list-bubble, #launchpad-wormhole{display: none !important;} .search-form__go-back-button,.sub-nav,.search-form__open-filters-button{display:none !important;} #_engagebay_extn_linkedinengagebay_iframe{ display:none !important;} </style>")
+								.appendTo("head");
+						$(
+								"<style type='text/css' class='engagebay-resources'>.engagebayContactAdd, .global-nav__nav, .global-nav__primary-items, .scaffold-layout-toolbar, .scaffold-layout__ad, .global-footer, .msg-overlay-container { display: none !important; } </style>")
+								.appendTo("head");
+					}
 
 					$("#primary-nav").css({
 						"bottom" : "inherit"
@@ -492,14 +529,7 @@ $(document).ready(function() {
 		if (response.status) {
 			currentTabId = response.id;
 			parentTabId = response.parent_id;
-			$('body').removeClass('eb-validated');
-			$('.syncToEngagebay').remove();
-			loadEngagebay();
-			console.log("in = " + response.status + ", " + response.id);
-			setInterval(function() {
-				loadEngagebay();
-			}, 2000);
-
+			initEngagebay();
 		}
 	});
 
