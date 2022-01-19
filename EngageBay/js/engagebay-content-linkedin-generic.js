@@ -1,6 +1,7 @@
 var engagebayioIframe;
 var emailIds={};
 var isShowAddBtns = {};
+
 function linkProfileLinkedin() {
     var response = getContactDetailsMultipleLinkedinTestProspectProspect();
 	if(response.length == 0)
@@ -20,18 +21,24 @@ function createPopupIframeLinkedinProspect(_html){
 					  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">\
 					  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>\
 					  <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>';
+	
+	stylesheets = '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">\
+					  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">\
+					  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>';
+
+	
 	if(document.getElementById('_engagebayio_extn_linkedin_iframeProspect')){
 		
 		return engagebayioIframe = document.getElementById('_engagebayio_extn_linkedin_iframeProspect').innerHTML= stylesheets + "<div style='position: fixed;right: 0px;top: 2px;z-index: 9999;'>\
 	</div><div style='position: relative;background: #e2d7f5;text-align: center;padding: 3px 0px 3px 0px;'>\
 	<img src='https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png' style='width:140px;padding-top:16px;padding-bottom:16px;'>\
-	<div id='close-frame' style='position: absolute;right: 5px;top: 9px;cursor: pointer;'><img src='https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/cancel.svg' style='height:16px;' onclick='engagebayclosegprospect();'></div></div>\
+	<div id='close-frame' style='position: absolute;right: 5px;top: 9px;cursor: pointer;'><img src='https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/cancel.svg' style='height:16px;' class='engagebayclosegprospect'></div></div>\
 	<div id='_engagebayio_extn_addAllContact' style='background-color: #ece1ff;'>\
-	<div id='add-all'><a href='javascript:void(0)'  onclick='engagebayShowAddAll()'  style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add all</a>\
+	<div id='add-all'><a href='javascript:void(0)'  class='engagebayShowAddAll'  style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add all</a>\
 	</div>\
 	<div id='engagebay_save_all_cts hide' style='display:none;'>\
-	<a href='javascript:void(0)'  onclick='engagebaysavealltag()'  style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add Tag</a>\
-	<input id='save_all_100' type='button' value='Add all Contacts' class='save btn _engagebayio_save_ engagebay_save_all_cts' data-loading-text='Searching...'style='padding:10px 0px;background-color: #f2603e;color: white;border: 1px solid #f2603e;width: 95%;margin-left: 7px;margin-top: 6px;'  onclick='engagebaysaveallnotg();'>\
+	<a href='javascript:void(0)'  class='engagebaysavealltag'  style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add Tag</a>\
+	<input id='save_all_100' type='button' value='Add all Contacts' class='save btn _engagebayio_save_ engagebay_save_all_cts engagebaysaveallnotg' data-loading-text='Searching...'style='padding:10px 0px;background-color: #f2603e;color: white;border: 1px solid #f2603e;width: 95%;margin-left: 7px;margin-top: 6px;' >\
 	<div style='height: 2px;border-top: 1px solid #c5b1e6;box-shadow: 0 1px 0 #FFFFFF inset;margin-top: 7px;width: 94%;margin-left: 9px;' id='engagebay_p_f1'></div>\
 	</div>\
 	<div id='_engagebayio_extn_addContact' style='width:100%;padding:10px 0px;padding-left:9px;padding-right:9px;background-color: #ece1ff;'>"+_html+"</div>";
@@ -45,17 +52,24 @@ function createPopupIframeLinkedinProspect(_html){
 	divTest.innerHTML= stylesheets + "<div style='position: fixed;right: 0px;top: 2px;z-index: 9999;'>\
 	</div><div style='position: relative;background: #e2d7f5;text-align: center;padding: 3px 0px 3px 0px;'>\
 	<img src='https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png' style='width:140px;padding-top:16px;padding-bottom:16px;'>\
-	<div id='close-frame' style='position: absolute;right:-5px;top:-25px;cursor: pointer;'><img src='https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/cancel.svg' style='height:16px;' onclick='engagebayclosegprospect();'></div></div>\
+	<div id='close-frame' style='position: absolute;right:-5px;top:-25px;cursor: pointer;'><img src='https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/cancel.svg' style='height:16px;' class='engagebayclosegprospect'></div></div>\
 	<div id='_engagebayio_extn_addAllContact' style='background-color: #ece1ff;'>\
-	<div id='add-all'><a href='javascript:void(0)'  onclick='engagebayShowAddAll()'  style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add all</a>\
+	<div id='add-all'><a href='javascript:void(0)' class='engagebayShowAddAll'  style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add all</a>\
 	</div>\
 	<div id='engagebay_save_all_cts' style='display:none;'>\
-	<a id='link_tag_100' href='javascript:void(0)'  onclick='engagebaysavealltag()' style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add Tag</a>\
-	<input id='save_all_100' type='button' value='Add all Contacts' class='save btn _engagebayio_save_ engagebay_save_all_cts' data-loading-text='Searching...'style='padding:10px 0px;background-color: #f2603e;color: white;border: 1px solid #f2603e;width: 95%;margin-left: 7px;margin-top: 6px;'  onclick='engagebaysaveallnotg();'>\
+	<a id='link_tag_100' href='javascript:void(0)'  class='engagebaysavealltag' style='float: right;margin-right: 12px;margin-top: 3px;text-decoration: none;font-size: 11px'>+ Add Tag</a>\
+	<input id='save_all_100' type='button' value='Add all Contacts' class='save btn _engagebayio_save_ engagebay_save_all_cts engagebaysaveallnotg' data-loading-text='Searching...'style='padding:10px 0px;background-color: #f2603e;color: white;border: 1px solid #f2603e;width: 95%;margin-left: 7px;margin-top: 6px;' >\
 	<div style='height: 2px;border-top: 1px solid #c5b1e6;box-shadow: 0 1px 0 #FFFFFF inset;margin-top: 13px;width: 94%;margin-left: 9px;' id='engagebay_p_f1'></div>\
 	</div></div>\
 	<div id='_engagebayio_extn_addContact' style='width:100%;padding:10px 0px;padding-left:9px;padding-right:9px;background-color: #ece1ff;'>"+_html+"</div>";
 	
+
+	// var css = '._engagebayio_extn_contact_:hover ._eb_show_add_tag_contact_{ display: inline !important; }',
+    // head = document.head || document.getElementsByTagName('head')[0],
+    // style = document.createElement('style');
+	// divTest.appendChild(style);
+	// style.type = 'text/css';
+	// style.appendChild(document.createTextNode(css));
 	
 	var JS= document.createElement('script');
 	JS.text= 
@@ -75,7 +89,7 @@ function createPopupIframeLinkedinProspect(_html){
 			parent.postMessage({from:'engagebayio_extn_prospect',action:'saveEachContact',indexValue:index},'*');\
 		}\
 		function showAddBtn(index){\
-			parent.postMessage({from:'engagebayio_extn_prospect',action:'showAddBtn',indexValue:index},'*');\
+			console.log('hello');parent.postMessage({from:'engagebayio_extn_prospect',action:'showAddBtn',indexValue:index},'*');\
 		}\
 		function hideAddBtn(index){\
 			parent.postMessage({from:'engagebayio_extn_prospect',action:'hideAddBtn',indexValue:index},'*');\
@@ -89,7 +103,7 @@ function createPopupIframeLinkedinProspect(_html){
 	document.body.appendChild(JS);	
 	
 	engagebayioIframe=divTest;
-	
+
 	window.addEventListener("message",function(evt){
 		if(evt.data.from!='engagebayio_extn_prospect')
 			return;
@@ -152,16 +166,17 @@ function createPopupIframeLinkedinProspect(_html){
 			var individualContactID = document.getElementById('_engagebayio_extn_addContact');
 			individualContactID.style.paddingTop = '30px';
 			var x = document.getElementById('save_all_100');
-			document.getElementById('link_tag_100').remove();
-			if(document.getElementById("tag_drpdwn_engagebay") == undefined || document.getElementById("tag_drpdwn_engagebay") == null){
+			$('#link_tag_100').remove();
+			if($("#tag_all_engagebay").length == 0){
 				var y = '<div id="tag_edit_frm_all">\
 				<input autocomplete="off" id="tag_all_engagebay" type="text" name="tags" placeholder="Separate tags using comma" style="margin-top: 5px;margin-left: 8px;width: 94%;color: #263238;font-weight: 400;outline: none !important;box-shadow: none;overflow: hidden;line-height: normal !important;border: 0px solid;background-color: #ffffff;border-radius: 4px;padding: 0 6px;height: 29px;font-size: 11px;">\
 				</div>';
 				x.insertAdjacentHTML('beforebegin',y);
-			}else{
-				if(document.getElementById("tag_drpdwn_engagebay") != null)
-					document.getElementById("tag_drpdwn_engagebay").remove();
 			}
+			// else{
+			//	if(document.getElementById("tag_drpdwn_engagebay") != null)
+			//		document.getElementById("tag_drpdwn_engagebay").remove();
+			// }
 
 		}
 		else if(actionReceived=='close_engagebay_google_prospect')
@@ -171,7 +186,7 @@ function createPopupIframeLinkedinProspect(_html){
 		}
 		else if(actionReceived=='show_engagebay_tab_textfld'){
 			var x = document.getElementById('save_all_100');
-			document.getElementById('link_tag_100').remove();
+			$('#link_tag_100').remove();
 			if(document.getElementById("tag_drpdwn_engagebay") == undefined || document.getElementById("tag_drpdwn_engagebay") == null){
 				var y = '<div id="tag_edit_frm_all">\
 				<input autocomplete="off" id="tag_all_engagebay" type="text" name="tags" placeholder="Separate tags using comma" style="margin-top: 5px;margin-left: 8px;width: 94%;color: #263238;font-weight: 400;outline: none !important;box-shadow: none;overflow: hidden;line-height: normal !important;border: 0px solid;background-color: #ffffff;border-radius: 4px;padding: 0 6px;height: 29px;font-size: 11px;">\
@@ -197,7 +212,7 @@ function createPopupIframeLinkedinProspect(_html){
 		}
 		else if(actionReceived=='engagebay_save_all_contacts_notags'){
 			// Disable button
-			$("#_engagebayio_extn_addAllContact ._engagebayio_save_").css('pointer-events','none');
+			// $("#_engagebayio_extn_addAllContact ._engagebayio_save_").css('pointer-events','none');
 
 			var addId = document.getElementById('add-all');
 			addId.style.display = 'none';
@@ -311,7 +326,7 @@ function createPopupIframeLinkedinProspect(_html){
 }
 
 function getEngageBayLinkedInProfileViewProspect(linkedInProfile, index, endIndex){
-	var html = "\<div id='_engagebayio_extn_addContact_"+index+"' class='_engagebayio_extn_contact_' style='margin-top:15px;' onmouseleave='hideAddBtn("+index+")' onmouseenter='showAddBtn("+index+")'>\
+	var html = "\<div id='_engagebayio_extn_addContact_"+index+"' data-index='"+index+"' class='_engagebayio_extn_contact_' style='padding-top:15px;' >\
 				<input name='first_name' type='hidden' class='_engagebayio_inp' value="+ linkedInProfile.firstName +">\
 				<input name='last_name' type='hidden' class='_engagebayio_inp' value="+ linkedInProfile.lastName +">\
 				<input name='website' data-subtype='LINKEDIN' type='hidden' class='_engagebayio_inp' value="+linkedInProfile.linkedin+">";
@@ -327,9 +342,9 @@ function getEngageBayLinkedInProfileViewProspect(linkedInProfile, index, endInde
 		html +="\<div class='text-muted' style='font-size: 13px;'>"+linkedInProfile.role+"</div>";
 	if(linkedInProfile.company)
 		html += "\<div class='text-muted' style='font-size: 13px;'>"+linkedInProfile.company+"</div>";
-	html += '<a id="show_add_tag_contact_'+index+'" href="javascript:void(0)" onclick="engagebayshowSavetagAndContacteach('+index+');" style="display:none;float: right;text-decoration: none;margin-bottom: 5px;font-size: 11px;">+ Add</a><div id="save_button_result_'+index+'" style="margin-top: 5px;display:none;margin-bottom:10px;"><a id="link_each_text_'+index+'" href="javascript:void(0)" onclick="engagebayshowtaginputeach('+index+');" style="float: right;text-decoration: none;margin-bottom: 5px;font-size: 11px;">+ Add Tag</a>'
+	html += '<a id="show_add_tag_contact_'+index+'" class="_eb_show_add_tag_contact_" href="javascript:void(0)" style="display:none;float: right;text-decoration: none;margin-bottom: 5px;font-size: 11px;">+ Add</a><div id="save_button_result_'+index+'" style="margin-top: 5px;display:none;margin-bottom:10px;"><a id="link_each_text_'+index+'" href="javascript:void(0)" class="engagebayshowtaginputeach" style="float: right;text-decoration: none;margin-bottom: 5px;font-size: 11px;">+ Add Tag</a>'
 	html += "\
-					<input type='button' value='Add Contact' style='background-color:#f2603e;width:100%;padding:10px 0px;border-color:#f2603e;color:#fff' class='save btn btn-sm  _engagebayio_save_' data-loading-text='Searching...'  onclick='engagebaysaveeach("+index+");' style='width: 100%;'>\
+					<input type='button' value='Add Contact' style='background-color:#f2603e;width:100%;padding:10px 0px;border-color:#f2603e;color:#fff' class='save btn btn-sm  _engagebayio_save_ _engagebayio_save_each_' data-loading-text='Searching...' style='width: 100%;'>\
 				\
 				</div>"
 	if(index != endIndex-1){
@@ -341,14 +356,14 @@ function getEngageBayLinkedInProfileViewProspect(linkedInProfile, index, endInde
 }
 
 function getContactDetailsMultipleLinkedinTestProspectProspect(){
-	var allDatas =document.getElementsByClassName("rc");
+	var allDatas =document.getElementsByClassName("g");
 	var arr = [];
 	var len = allDatas.length;
 	var eachContact={};
 	var checkLinkdinCount = 0;
 	for (var i = 0; i < len; i++) {
 	var eachContact={};
-	var ele = document.getElementsByClassName("rc")[i];
+	var ele = document.getElementsByClassName("g")[i];
 	var str = ele.getElementsByTagName("a")[0].text;
 	var fullName = str.split("| LinkedIn")[0];
 	
@@ -510,7 +525,7 @@ function saveEachContactEngagebay(properties,indexRecevied,tags_input,message){
 					contact.type='PERSON';
 					
 					// Disable button
-					$("#save_button_result_"+indexRecevied+" ._engagebayio_save_").css('pointer-events','none');
+					// $("#save_button_result_"+indexRecevied+" ._engagebayio_save_").css('pointer-events','none');
 
 
 					_EB_Request_Processor("/api/browser-extension/addcontact",contact, "POST",function(resp) {
@@ -526,11 +541,15 @@ function saveEachContactEngagebay(properties,indexRecevied,tags_input,message){
 									$("#save_button_result_"+indexRecevied+"").css('display','none');
 									$("#save_msg_result_"+indexRecevied+"").html("<span class='glyphicon glyphicon-ok-sign'></span>");
 									if(actionReceived == 'engagebay_save_all_contacts' && indexRecevied == totalCountOfContact - 1){
-										$("#_engagebayio_extn_addAllContact").html('<div id="_engagebayio_extn_addAllContact" style="background-color: #ece1ff;"><input type="button" value="All Contacts Saved" class="save btn _engagebayio_save_"  style="padding:10px 0px;background-color: #f2603e;color: white;border: 1px solid #f2603e;width: 95%;margin-left: 7px;margin-top: 6px;cursor: default;">	<div style="border-top: 1px solid #c5b1e6;box-shadow: 0 1px 0 #FFFFFF inset;margin-top: 7px;margin-bottom:-5px;"></div></div>')
+										$("#_engagebayio_extn_addAllContact").html('<div class="text-success text-center" style="padding: 10px;">Contacts has been saved successfully</div><div style="border-top: 1px solid #c5b1e6;box-shadow: 0 1px 0 #FFFFFF inset;margin-top: 7px;margin-bottom:-5px;"></div>')
 									}
 								},function(err) {
 									$("#save_button_result_"+indexRecevied+"").css('display','none');
-		     						$("#save_msg_result_"+indexRecevied+"").html("<div id='message' style='color: #dd4b39;font-size: 15px;display: inline-block;'>"+err.responseText+"</div>");
+									var errMessge = err.responseText;
+									if(!errMessge)
+										errMessge = "Error while saving the contact.";
+
+		     						$("#save_msg_result_"+indexRecevied+"").html("<div id='message' style='color: #dd4b39;font-size: 12px;padding-top:10px;display: inline-block;'>"+errMessge+"</div>");
 		     					
 								},"application/x-www-form-urlencoded");
 			},
@@ -569,12 +588,84 @@ function engagebay_get_linked_profilegoogle(URL,indexRecevied,actionReceived, ca
 				}
 }
 
+function engagebaysaveallnotg(){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'engagebay_save_all_contacts_notags'},'*');
+}
+function engagebayShowAddAll(){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'engagebay_show_save_contacts'},'*');
+}
+function engagebayshowSavetagAndContacteach(index){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'engagebay_show_tag_add_btn',indexValue:index},'*');
+}
+function engagebaysavealltag(){ 
+parent.postMessage({from:'engagebayio_extn_prospect',action:'show_engagebay_tab_textfld'},'*');
+}
+function engagebaysaveeach(index){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'saveEachContact',indexValue:index},'*');
+}
+function showAddBtn(index){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'showAddBtn',indexValue:index},'*');
+}
+function hideAddBtn(index){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'hideAddBtn',indexValue:index},'*');
+}
+function engagebayshowtaginputeach(index){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'engagebayshowtaginputeach1',indexValuefrm:index},'*');
+}
+function engagebayclosegprospect(){
+	parent.postMessage({from:'engagebayio_extn_prospect',action:'close_engagebay_google_prospect'},'*');
+}
 
 setTimeout(function(){
 var currentURL = '';
 currentURL = window.location.href;
 
 		linkProfileLinkedin();
+
+		$(document).on('click', ".engagebaysaveallnotg", function(evt){
+			evt.preventDefault();
+			engagebaysaveallnotg();
+		});
+
+		$(document).on('click', ".engagebayshowtaginputeach", function(evt){
+			evt.preventDefault();
+			engagebayshowtaginputeach($(this).closest('._engagebayio_extn_contact_').attr('data-index'));
+		});
+
+		$(document).on('click', ".engagebaysavealltag", function(evt){
+			evt.preventDefault();
+			engagebaysavealltag();
+		});
+
+		$(document).on('click', ".engagebayShowAddAll", function(evt){
+			evt.preventDefault();
+			engagebayShowAddAll();
+		});
+
+		$(document).on('click', ".engagebayclosegprospect", function(evt){
+			engagebayclosegprospect();
+		});
+
+		$(document).on('click', "._engagebayio_save_each_", function(evt){
+			var index = $(this).closest('._engagebayio_extn_contact_').attr('data-index');
+			engagebaysaveeach(index);
+			engagebayshowSavetagAndContacteach(index);
+		});
+
+		$("._engagebayio_extn_contact_", document).on('mouseleave', function(evt){
+			hideAddBtn($(this).attr('data-index'));
+		});
+
+		$("._engagebayio_extn_contact_", document).on('mouseenter', function(evt){
+			showAddBtn($(this).attr('data-index'));
+		});
+
+		$(document).on('click', '._eb_show_add_tag_contact_', function(evt){
+			evt.preventDefault();
+			var index = $(this).closest('._engagebayio_extn_contact_').attr('data-index');
+			$("#save_msg_result_"+index+"").html("");
+			engagebayshowSavetagAndContacteach(index);
+		});
 		
 		$(document).on("click","div#_engagebayio_extn_addContact",function(evt){
 

@@ -600,7 +600,7 @@ $.each(
 
 var OUTLOOK_VIEW_REFERENCE_ELEMENTS = {
 
-	'live' : {
+	/*'live' : {
 		compose_view_toolbar_container_id : "._1vGTUqFfb2m4yyZJJPHFDg._1PGX4GmfSf_CaaQSnoiB4l",
 		compose_view_content_container_id : "._4utP_vaqQ3UQZH0GEBVQe.B1QSRkzQCtvCtutReyNZ._17ghdPL1NLKYjRvmoJgpoK._2s9KmFMlfdGElivl0o-GZb",
 		compose_view_container_id : "._3gI_crMwmfcn18RAAThSVI"
@@ -615,7 +615,25 @@ var OUTLOOK_VIEW_REFERENCE_ELEMENTS = {
 		compose_view_toolbar_container_id : "._1vGTUqFfb2m4yyZJJPHFDg._1PGX4GmfSf_CaaQSnoiB4l",
 		compose_view_content_container_id : "._4utP_vaqQ3UQZH0GEBVQe.B1QSRkzQCtvCtutReyNZ",
 		compose_view_container_id : "._3gI_crMwmfcn18RAAThSVI._91LG5yQRzdMWoEcLoAg67"
-	}
+	},*/
+
+	// compose_view_container_id has customScrollBar class for future updates
+
+	'live' : {
+		compose_view_toolbar_container_id : "._2N3UjcFHJvQ4TrTbRjlQQS._2g4pIUt1rpnHn-PxxHd_Ax",
+		compose_view_content_container_id : "._16VySYOFix816mo3KsgOhw._1m89yrwkVHJAoAZ_JC8cw3._3VMDfFa1O01ntQj14k1rpD._2h8akM49fdZRv6KHq8jy75._3VQzn9yg47NIR2H1tIIeag",
+		compose_view_container_id : "._1gz1du1FnFSC_L5Sxr3bZc.customScrollBar._2pzghn03YEkZ3iKyapziVF"
+	},
+	'office' : {
+		compose_view_toolbar_container_id : "._2N3UjcFHJvQ4TrTbRjlQQS._2g4pIUt1rpnHn-PxxHd_Ax",
+		compose_view_content_container_id : "._16VySYOFix816mo3KsgOhw._1m89yrwkVHJAoAZ_JC8cw3",
+		compose_view_container_id : "._1gz1du1FnFSC_L5Sxr3bZc._2pzghn03YEkZ3iKyapziVF"
+	},
+	'office365' : {
+		compose_view_toolbar_container_id : "._2N3UjcFHJvQ4TrTbRjlQQS._2g4pIUt1rpnHn-PxxHd_Ax",
+		compose_view_content_container_id : "._16VySYOFix816mo3KsgOhw._1m89yrwkVHJAoAZ_JC8cw3",
+		compose_view_container_id : "._1gz1du1FnFSC_L5Sxr3bZc._2pzghn03YEkZ3iKyapziVF"
+	},
 
 }
 

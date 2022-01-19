@@ -7,7 +7,7 @@ function createSingleFetchElement() {
 	// $('.engagebayContactAdd').remove();
 
 	var buttond = '<button id="createcontactsingle" type="button" class="btn primary-btn engagebayContactAdd" style="background-color:#f2603e;border: 1px solid #f2603e;color: #fff;vertical-align:sub;font-weight: 600;border-radius: 2px;cursor:pointer;padding: 8px 10px;line-height: 1;margin-left: 8px;"> <span class="text" style="font-size:14px;">Add to EngageBay</span></button>';
-	$('.pv-s-profile-actions__overflow').each(function() {
+	$('.pvs-profile-actions').each(function() {
 		if ($(this).next('.engagebayContactAdd').length == 0 && !hasAddedSingleContacttoEb)
 			$(this).after(buttond);
 	});

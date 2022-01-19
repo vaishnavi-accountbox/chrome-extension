@@ -239,6 +239,9 @@ function EBinitializeEventsOnComposeView(composeView) {
 	// tracking
 	var randomNumber = new Date().getTime();
 
+	// Storing globally to fix empty recipients after sent.
+	var presendingEmailRecipient = [];
+
 	var $appendEle = $(EngageBayGetAndCompileTemplate("toolkit", {
 		random_id : randomNumber
 	}));
@@ -269,6 +272,8 @@ function EBinitializeEventsOnComposeView(composeView) {
 		var emailRecipients = getRecipientsFromComposeView(composeView);
 		if (emailRecipients.length == 0)
 			return;
+
+		presendingEmailRecipient = emailRecipients;
 
 		var json = {
 			recipients : JSON.stringify(emailRecipients),
@@ -355,6 +360,10 @@ function EBinitializeEventsOnComposeView(composeView) {
 						function onThreadIdFetched(threaddId) {
 
 							var emailRecipients = getRecipientsFromComposeView(composeView);
+							
+							if (emailRecipients.length == 0)
+								emailRecipients = presendingEmailRecipient;
+								
 							if (emailRecipients.length == 0)
 								return;
 
