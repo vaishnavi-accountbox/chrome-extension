@@ -4,13 +4,27 @@ var INBOX_SDK_APP_ID = "sdk_engagebay_1d3d066dbf";
 var LOGGED_IN_GMAIL_USER;
 
 var ENGAGEBAY_GMAIL_THREAD_ROW_HANDLER;
+var MAIL_BOX_PERMISSION_GRANTED = true;
+
+var engageBayInboxSDK;
 
 (function() {
 
-	authenticateUser(function() {
-		EBInitializeInboxSDKTools(true);
-	}, function() {
-		EBInitializeInboxSDKTools(false);
+	InboxSDK.load(2, INBOX_SDK_APP_ID).then(function(sdk) {
+
+		engageBayInboxSDK = sdk;
+		LOGGED_IN_GMAIL_USER = sdk.User.getEmailAddress().trim();
+
+		mailBoxPermission.get(engageBayInboxSDK.User.getEmailAddress().trim(), function() {
+			
+			authenticateUser(function() {
+				EBInitializeInboxSDKTools(true, sdk);
+			}, function() {
+				EBInitializeInboxSDKTools(false, sdk);
+			});
+	
+		});
+					
 	});
 
 })();
@@ -26,44 +40,58 @@ var gmailSelectors = {
 
 };
 
-var engageBayInboxSDK;
 
-function EBInitializeInboxSDKTools(isLoggedInUser) {
-
-	InboxSDK
-			.load(2, INBOX_SDK_APP_ID)
-			.then(
-					function(sdk) {
-
-						LOGGED_IN_GMAIL_USER = sdk.User.getEmailAddress()
-								.trim();
-
-						engageBayInboxSDK = sdk;
+function EBInitializeInboxSDKTools(isLoggedInUser, sdk) {
 
 						if (!isLoggedInUser)
 							return;
+
+						var ebProfileIcon = (!isLoggedInUser || !MAIL_BOX_PERMISSION_GRANTED) ? 'images/profile_icon_32_deny.png' : 'images/profile_icon_32_granted.png';
 
 						sdk.Toolbars.addToolbarButtonForApp({
 							// title : "EB",
 							// titleClass : "engage-bay-app-toolbar",
 							iconClass : 'engagebay-app-toolbar-icon',
 							iconUrl : browser.extension
-									.getURL('images/icon_32.png'),
+									.getURL(ebProfileIcon),
 							tooltip : 'Save Template',
 							onClick : function(event) {
 
 								var template = "";
+
 								if (isLoggedInUser)
-									template = EngageBayGetAndCompileTemplate(
+									{
+										var json = {};
+										json.engagebay_user = ENGAGEBAY_AUTH_USER_DATA;
+										json.gmail_user = {
+											email: LOGGED_IN_GMAIL_USER
+										}
+										json.mailbox_permission_enabled = MAIL_BOX_PERMISSION_GRANTED;
+
+										template = EngageBayGetAndCompileTemplate(
 											"toolbar-popover",
-											ENGAGEBAY_AUTH_USER_DATA);
+											json);
+
+									}
 								else
 									template = EngageBayGetAndCompileTemplate(
 											"login-form", {});
 
 								event.dropdown.el.innerHTML = template;
+
+								$('body').on('click', '.engagebay-disable-on-mailbox', function(){
+									mailBoxPermission.disable(LOGGED_IN_GMAIL_USER);
+								});
+
+								$('body').on('click', '.engagebay-enable-on-mailbox', function(){
+									mailBoxPermission.enable(LOGGED_IN_GMAIL_USER);
+								});
 							}
 						});
+
+						// Do not load engagebauy features if permissions revoked on mail box
+						if(!MAIL_BOX_PERMISSION_GRANTED)
+							return;
 
 						// Inform to extension aboutn the logged gmail user
 						// details
@@ -97,7 +125,7 @@ function EBInitializeInboxSDKTools(isLoggedInUser) {
 									MessageViewObjj
 											.getBodyElement()
 											.querySelectorAll(
-													'img[src*="https://eblink1.com/openmail?nid"]')
+													'img[src*="https://eblink6.com/openmail?nid"]')
 											.forEach(
 													function(eventEle) {
 
@@ -227,7 +255,7 @@ function EBInitializeInboxSDKTools(isLoggedInUser) {
 
 								});
 
-					});
+					
 
 }
 
@@ -285,7 +313,7 @@ function EBinitializeEventsOnComposeView(composeView) {
 
 		// Remove existing track if any (Possibility email
 		// forward)
-		$mailBody.find('img[src*="https://eblink1.com/openmail"]').remove();
+		$mailBody.find('img[src*="https://eblink6.com/openmail"]').remove();
 
 		if (isTrackable) {
 
@@ -301,8 +329,8 @@ function EBinitializeEventsOnComposeView(composeView) {
 						var href = $(this).attr('href');
 
 						// Check is forward email
-						if (href.indexOf("eblink1.com/repofilepreview") != -1
-								|| href.indexOf("eblink1.com/openurl") != -1)
+						if (href.indexOf("eblink6.com/repofilepreview") != -1
+								|| href.indexOf("eblink6.com/openurl") != -1)
 							return;
 
 						var newJSON = json;

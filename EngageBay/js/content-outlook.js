@@ -299,7 +299,7 @@ function insertOutlookEngagebayTrack(html, json) {
 						var href = $(this).attr('href');
 
 						// Check is forward email
-						if (href.indexOf("eblink1.com") != -1)
+						if (href.indexOf("eblink6.com") != -1)
 							return;
 
 						var newJSON = json;
@@ -399,7 +399,7 @@ function initlializeOutllokEngagebayToolkit() {
 
 function checkAndToggleTrackContent(isTackable, $composeView) {
 
-	$composeView.find('img[src*="https://eblink1.com/openmail"]').remove();
+	$composeView.find('img[src*="https://eblink6.com/openmail"]').remove();
 
 	if (isTackable) {
 		$composeView

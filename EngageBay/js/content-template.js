@@ -16,17 +16,17 @@ Handlebars.registerHelper('EngageBayGetAndCompileTemplate', function(templateNam
 
 const engageBayTemplate = {
 
-	'inline-attachment' : 'https://eblink1.com/repofilepreview?repo_id={{repo_id}}&nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext',
+	'inline-attachment' : 'https://eblink6.com/repofilepreview?repo_id={{repo_id}}&nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext',
 
 	'toolkit' : '<div class="aoD az6 SubjectToolbar engagebay-subject-toolbar" style="width: initial; padding: 0px;"> <div> <div style="display: inline-block; font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif; font-size: 12px; margin-right: 5px; padding-right: 10px; border-right: 1px solid #f6f6f6; background: #f6f6f6; padding: 6px 10px 10px 10px;"> <img src="{{getImageURL "images/icon_32.png"}}" style="vertical-align: middle; height: 17px; width: 16px;"> <span style="vertical-align: middle; font-weight: 500;">EngageBay</span> </div> <div style="display: inline-block; margin-right: 10px; font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif; font-size: 12px;"> <span class="be-checkbox" style="cursor: pointer;" data-tooltip="This email will be tracked so you will get open and click notifications."> <input style="vertical-align: top;" class="eb-checkbox engageBayTrackEmail" type="checkbox" id="engageBayTrackEmail_{{random_id}}" checked="checked"> <label for="engageBayTrackEmail_{{random_id}}" style="vertical-align: middle;">Track Mail</label> </span> </div> <div style="display: inline-block; margin-right: 10px; font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif; font-size: 12px;" data-tooltip="Recipient will be added as a contact in your EngageBay account."> <span class="be-checkbox" style="cursor: pointer;"> <input style="vertical-align: top;" class="eb-checkbox engageBaySyncContacts" type="checkbox" id="engageBaySyncContacts_{{random_id}}"> <label for="engageBaySyncContacts_{{random_id}}" style="vertical-align: middle;">Sync Recipients</label> </span> </div> <div id="engagebayEmailTemplates" style="float: right; cursor: pointer; font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif; font-size: 12px; margin-right: 3px; display: inline-block; padding-top: 7px;" data-tooltip="Insert a Template"> <img src="{{getImageURL "images/email-template.png"}}" style="vertical-align: middle; height: 18px;"> <a style="vertical-align: middle;">Templates</a> </div> <div id="engagebayDocuments" style="cursor: pointer; font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif; font-size: 12px; margin-right: 10px; float: right; display: inline-block; padding-top: 7px;" data-tooltip="Insert a Document"> <img src="{{getImageURL "images/documents.png"}}" style="vertical-align: middle; height: 18px;"> <a style="vertical-align: middle;">Documents</a> </div> </div> </div>',
 
 	'outlook-toolkit' : '<div class="engagebay-subject-toolbar {{outlook_service_type}}" style="width: initial;padding:0px;color:#333;"> <div> <div style="display: inline-block;font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif;font-size: 12px;margin-right: 10px;padding-right: 10px;border-right: 1px solid #f6f6f6;background: #f6f6f6;padding: 6px 10px 10px 10px;"> <img src="{{getImageURL "images/icon_32.png"}}" style="vertical-align: middle;height: 17px;width:16px;"> <span style="vertical-align: middle;font-weight: 500;">EngageBay</span> </div> <div style="display: inline-block; margin-right: 10px; font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif; font-size: 12px;"> <span class="be-checkbox" style="cursor: pointer;" data-tooltip="This email will be tracked so you will get open and click notifications."> <input style="vertical-align: middle;" class="eb-checkbox engageBayTrackEmail" type="checkbox" id="engageBayTrackEmail_{{random_id}}" checked="checked"> <label for="engageBayTrackEmail_{{random_id}}" style="vertical-align: middle;">Track Mail</label> </span> </div><div style="display: inline-block; margin-right: 10px; font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif; font-size: 12px;"> <span class="be-checkbox" style="cursor: pointer;" > <input style="vertical-align: top;" class="eb-checkbox engageBaySyncContacts" type="checkbox" id="engageBaySyncContacts_{{random_id}}"> <label for="engageBaySyncContacts_{{random_id}}" style="vertical-align: middle;">Sync Recipients</label> </span> </div>   <div id="engagebayEmailTemplates" style="float: right;cursor: pointer;font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif;font-size: 12px;margin-right: 10px;display: inline-block;padding-top: 7px;" data-tooltip="Insert a Template"> <img src="{{getImageURL "images/email-template.png"}}" style="vertical-align: middle;height: 18px;"> <a style="vertical-align: middle;">Templates</a> </div> <div id="engagebayDocuments" style="cursor: pointer;font-family: Segoe UI, Segoe WP, Tahoma, Arial, sans-serif;font-size: 12px;margin-right: 30px;float: right;display: none;padding-top: 7px;" data-tooltip="Insert a Document"> <img src="{{getImageURL "images/documents.png"}}" style="vertical-align: middle;height: 18px;"> <a style="vertical-align: middle;">Documents</a> </div> </div></div>',
 
-	"track-content" : '<div id="engagebay-track" class="engagebay-track-content engagebay-track-img"><img src="https://eblink1.com/openmail?nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext" nosend="1" align="left" width="0" height="0" style="border:0;width:0px;height:0px;opacity:0;" alt=""></img></div>',
+	"track-content" : '<div id="engagebay-track" class="engagebay-track-content engagebay-track-img"><img src="https://eblink6.com/openmail?nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext" nosend="1" align="left" width="0" height="0" style="border:0;width:0px;height:0px;opacity:0;" alt=""></img></div>',
 
-	"track-content-outlook" : '<img class="engagebay-track-image" src="https://eblink1.com/openmail?nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext" nosend="1" align="left" width="0" height="0" style="border:0;width:0px;height:0px;opacity:0;" alt=""></img>',
+	"track-content-outlook" : '<img class="engagebay-track-image" src="https://eblink6.com/openmail?nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext" nosend="1" align="left" width="0" height="0" style="border:0;width:0px;height:0px;opacity:0;" alt=""></img>',
 
-	"link-open" : 'https://eblink1.com/openurl?nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext&url={{encodeURL url}}',
+	"link-open" : 'https://eblink6.com/openurl?nid={{getAuthDetails "domain_id"}}&user_id={{getAuthDetails "id"}}&random_id={{random_id}}&thread_id={{thread_id}}&from_email={{from_email}}&source=web_ext&url={{encodeURL url}}',
 
 	"templates-list" : `<div class="eb-sales-content-modal" id="templateContent">
 	{{#if this.length}}
@@ -84,11 +84,62 @@ const engageBayTemplate = {
 
 	"popup-loader" : '<div class="eb-sales-content-modal"><div style=" text-align: center; padding: 150px 0px; "><img src="{{getImageURL "images/loader.gif"}}" style=" margin: auto; height: 100px; width: auto; "></div></div>',
 
-	"toolbar-popover" : '<div style="padding: 20px; width: 300px;"> <div style="padding-bottom: 20px; text-align: center;"> <img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png" alt="logo" width="140" height="auto" class="logo-img"> </div> <div style="margin-bottom: 15px; padding-left: 60px; text-align: left; position: relative;"> <img src="{{profile_img_url}}" style="height: 45px; width: auto; border-radius: 30px; position: absolute; left: 0px; top: -5px;"> <div style="font-size: 14px; margin-bottom: 5px; font-weight: 600;"> {{name}}</div> <div style="font-size: 13px;">{{email}}</div> </div><div style="font-size: 11px;text-align: left;padding: 10px 10px;color: #949494;margin-top: 30px;border: 1px solid #f6f6f6;background: #f6f6f6;line-height: 19px;">Click <a href="https://{{getAuthDetails "domain_name"}}.engagebay.com" target="_blank">here</a> to access EngageBay account.</div> </div>',
+	"toolbar-popover" : `<div style="padding: 20px; width: 300px;">
+	<div style="padding-bottom: 20px; text-align: center;">
+
+		<img
+			src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png"
+			alt="logo" width="140" height="auto" class="logo-img">
+	</div>
+
+	<div
+		style="margin-bottom: 15px; padding-left: 60px; text-align: left; position: relative;">
+
+		<img src="{{engagebay_user.profile_img_url}}"
+			style="height: 45px; width: 45px; border-radius: 30px; position: absolute; left: 0px; top: -5px;">
+		<div style="font-size: 14px; margin-bottom: 5px; font-weight: 600;">
+			{{engagebay_user.name}}</div>
+		<div style="font-size: 13px;">{{engagebay_user.email}}</div>
+	</div>
+
+	{{#if mailbox_permission_enabled}}
+
+	<div
+	style="background-color: #fdf5ea;border-color: #fde1b4;border-style: solid;border-width: 1px;padding: 15px;position: relative;text-align: left;">
+		<h5 style="font-size: 14px;margin: 0;color: #686868;font-size: 13px;margin-bottom: 10px;font-weight: 600;">
+		Turn off the EngageBay Sales Tool to disable CRM features & email tracking for this Gmail account: {{gmail_user.email}}</h5>
+		<div>
+			<button class="engagebay-dark-button engagebay-disable-on-mailbox"
+				style="cursor: pointer; padding: 4px 13px; color: #fff; background-color: #6a3b8d; border-color: #6a3b8d; border: transparent; border-radius: 3px;">
+				Turn Off</button>
+		</div>
+	</div>
+
+	{{else}}
+
+	<div
+	style="background-color: #fdf5ea;border-color: #fde1b4;border-style: solid;border-width: 1px;padding: 15px;position: relative;text-align: left;">
+		<h5 style="font-size: 14px;margin: 0;color: #686868;font-size: 13px;margin-bottom: 10px;font-weight: 600;">
+		Turn on the EngageBay Sales Tool to enable CRM features & email tracking for this Gmail account: {{gmail_user.email}}</h5>
+		<div>
+			<button class="engagebay-dark-button engagebay-enable-on-mailbox"
+				style="cursor: pointer; padding: 4px 13px; color: #fff; background-color: #6a3b8d; border-color: #6a3b8d; border: transparent; border-radius: 3px;">
+				Turn On</button>
+		</div>
+	</div>
+
+	{{/if}}
+
+	<div
+		style="font-size: 11px; text-align: left; padding: 10px 10px; color: #949494; margin-top: 30px; border: 1px solid #f6f6f6; background: #f6f6f6; line-height: 19px;">
+		Click <a href="https://{{getAuthDetails "domain_name"}}.engagebay.com" target="_blank">here</a> to access
+		EngageBay account.
+	</div>
+</div>`,
 
 	"login-form" : '<div class="login-form-container"> <div class="panel-heading"> <img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/engagebay.png" alt="logo" width="180" height="auto" class="logo-img"> <h4>EngageBay Login</h4> </div> <form id="loginForm" class="auth-form" name="loginForm" method="POST" > <input type="hidden" name="command" value="login" /> <div id="errorBlock" class="text-danger"> </div> <div class="form-group"> <div class=""> <input class="form-control" type="email" title="Enter a valid email address." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$" name="email" autocomplete="email" placeholder="Work Email" required value="" /> </div> </div> <div class="form-group"> <div class=""> <input class="form-control" type="password" name="password" minlength="4" title="Enter at least 4 characters." minlength="20" autocomplete="off" placeholder="Password" required /> </div> </div> <div class="form-group"> <div class=""> <div class="login-submit xs-m-0 xs-pt-0"> <button class="btn btn-warning btn-lg" type="submit"> Login <img src="../images/f-loader.gif" style="display:none;"> </button> </div> </div> </div> <div class=""> Do not have an account? <a id="showSignupForm" href="#" class="text-info">Sign Up</a> </div> </form> </div>',
 
-	"engagebay-footer" : '<div class="engagebay-footer" style="margin-top: 40px;display: block;"><div style="font-size: 11px;color: #868686;"><img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/green-check.png" style="height: 13px;width: 12px;"> Sent using <a href="https://eblink1.com/website" target="_blank" style="text-decoration:none;font-size: 11px;">EngageBay</a></div></div>',
+	"engagebay-footer" : '<div class="engagebay-footer" style="margin-top: 40px;display: block;"><div style="font-size: 11px;color: #868686;"><img src="https://d2p078bqz5urf7.cloudfront.net/cloud/assets/img/green-check.png" style="height: 13px;width: 12px;"> Sent using <a href="https://eblink6.com/website" target="_blank" style="text-decoration:none;font-size: 11px;">EngageBay</a></div></div>',
 
 	"contact-details-view" : `<div class="header ellipses"> <span class="close close-contact-detailed-view-container"><img src="{{getImageURL "images/back-arrow.png"}}" style="height: 15px;width: auto;vertical-align: bottom;"></span> {{email}} <span class="edit-contact"><img src="{{getImageURL "images/edit.png"}}" style="height: 15px;width: auto;vertical-align: bottom;cursor:pointer;"></span> </div> <div class="body"> <div class="eb-text-center eb-mb-15"> <img class="contact-image" src="{{getGravatarImage email}}"> </div> <div class="eb-text-center eb-mb-5 eb-font-size-17 eb-text-muted ellipses">{{fullname}}</div> <div class="ellipses eb-text-center eb-mb-15 eb-text-muted eb-text-bold">{{email}}</div> <div></div><div class="border eb-mb-15"></div> <div class="contact-options-toggle"> <div class="head"> <span class="opened"><img src="{{getImageURL "images/caret-down.png"}}"></span><span class="closed"><img src="{{getImageURL "images/caret-right.png"}}"></span> About </div> <div class="content"> 
 	

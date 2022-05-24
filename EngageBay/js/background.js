@@ -329,7 +329,7 @@ $(function() {
 
 			var state = false;
 
-			var url = "https://eblink1.com/openmail";
+			var url = "https://eblink6.com/openmail";
 			var urlOld = "https://ehhub.org/openmail";
 
 			if ((details.url.indexOf(url) > -1 && details.url.indexOf(url
@@ -347,8 +347,8 @@ $(function() {
 			return '';
 		}
 	}, {
-		urls : [ "*://*.googleusercontent.com/*", "*://*.eblink1.com/*",
-				"*://*.ehhub.org/*", "*://eblink1.com/*", "*://ehhub.org/*" ]
+		urls : [ "*://*.googleusercontent.com/*", "*://*.eblink6.com/*",
+				"*://*.ehhub.org/*", "*://eblink6.com/*", "*://ehhub.org/*" ]
 	}, [ "blocking" ]);
 
 	browser.notifications.onPermissionLevelChanged.addListener(function(

@@ -16,11 +16,63 @@ function authenticateUser(authCallback, unAuthCallback) {
 
 		ENGAGEBAY_AUTH_USER_DATA = authUser;
 
+
 		if (authCallback)
 			authCallback(authUser);
 
 	});
 
+}
+
+var mailBoxPermission = {
+	
+	storageKey : 'disabled_mail_box_email_list',
+
+	get: function(loggedInemail, cb) {
+
+		_EB_storage.get_local_storage(mailBoxPermission.storageKey, function(disabledEmailList) {
+
+			if(disabledEmailList){
+				MAIL_BOX_PERMISSION_GRANTED = (JSON.parse(disabledEmailList).indexOf(loggedInemail) == -1) ? true : false;
+			}else{
+				MAIL_BOX_PERMISSION_GRANTED = true;
+			}
+
+			cb();
+
+		});
+	},
+	enable: function(email){
+
+		_EB_storage.get_local_storage(mailBoxPermission.storageKey, function(disabledEmailList) {
+
+			var emails = (disabledEmailList) ? JSON.parse(disabledEmailList) : [];
+
+			if(emails.indexOf(email) > -1)
+				emails.splice(emails.indexOf(email), 1);
+
+			_EB_storage.set_local_storage(mailBoxPermission.storageKey, JSON.stringify(emails), function(params) {
+				window.location.reload();
+			})
+
+		});
+
+	},
+	disable: function(email){
+
+		_EB_storage.get_local_storage(mailBoxPermission.storageKey, function(disabledEmailList) {
+
+			var emails = (disabledEmailList) ? JSON.parse(disabledEmailList) : [];
+
+			if(emails.indexOf(email) == -1)
+				emails.push(email);
+
+			_EB_storage.set_local_storage(mailBoxPermission.storageKey, JSON.stringify(emails), function(params) {
+				window.location.reload();
+			})
+
+		});
+	},
 }
 
 function Variable(t, e) {
