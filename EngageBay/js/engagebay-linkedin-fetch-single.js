@@ -1,5 +1,5 @@
 var MutationObserver = window.MutationObserver || window.WebKitMutationObserver
-		|| window.MozMutationObserver;
+	|| window.MozMutationObserver;
 var body = document.querySelector('body');
 var hasAddedSingleContacttoEb = false;
 function createSingleFetchElement() {
@@ -7,7 +7,7 @@ function createSingleFetchElement() {
 	// $('.engagebayContactAdd').remove();
 
 	var buttond = '<button id="createcontactsingle" type="button" class="btn primary-btn engagebayContactAdd" style="background-color:#f2603e;border: 1px solid #f2603e;color: #fff;vertical-align:sub;font-weight: 600;border-radius: 2px;cursor:pointer;padding: 8px 10px;line-height: 1;margin-left: 8px;"> <span class="text" style="font-size:14px;">Add to EngageBay</span></button>';
-	$('.pvs-profile-actions').each(function() {
+	$('.pvs-profile-actions').each(function () {
 		if ($(this).next('.engagebayContactAdd').length == 0 && !hasAddedSingleContacttoEb)
 			$(this).after(buttond);
 	});
@@ -53,22 +53,22 @@ function saveEachContactengagebay100(properties) {
 	var props = [];
 	props = properties;
 	contact.properties = props;
-	var tags_input = JSON.stringify([ "LinkedIn" ]);
-	contact.tags = [ "LinkedIn" ];
+	var tags_input = JSON.stringify(["LinkedIn"]);
+	contact.tags = ["LinkedIn"];
 	contact.tagsWithTime = [];
 	contact.type = 'PERSON';
 	// Add Source
 	contact.source = 'LINKEDIN';
 
 	_EB_Request_Processor("/api/browser-extension/sync-contact", contact, "POST",
-			function(response) {
-				$('.engagebayContactAdd').text('Added to EngageBay');
-				hasAddedSingleContacttoEb = true;
-			}, function(err) {
-				alert("Error while adding the contact.");
-				$('.engagebayContactAdd').remove();
-				contactInfo();
-			}, "application/json");
+		function (response) {
+			$('.engagebayContactAdd').text('Added to EngageBay');
+			hasAddedSingleContacttoEb = true;
+		}, function (err) {
+			alert("Error while adding the contact.");
+			$('.engagebayContactAdd').remove();
+			contactInfo();
+		}, "application/json");
 
 	/*
 	 * _EB_Request_Processor( "/api/browser-extension/add-contact", contact,
@@ -100,76 +100,76 @@ function createContactFormate(linkedinData) {
 
 	if (linkedinData.image_src)
 		props.push({
-			name : 'image',
-			value : linkedinData.image_src,
-			type : 'SYSTEM'
+			name: 'image',
+			value: linkedinData.image_src,
+			type: 'SYSTEM'
 		});
 
 	if (linkedinData.role)
 		props.push({
-			name : 'role',
-			value : linkedinData.role,
-			type : 'SYSTEM'
+			name: 'role',
+			value: linkedinData.role,
+			type: 'SYSTEM'
 		});
 
 	if (linkedinData.first_name) {
 		props.push({
-			name : 'name',
-			value : linkedinData.first_name,
-			type : 'SYSTEM'
+			name: 'name',
+			value: linkedinData.first_name,
+			type: 'SYSTEM'
 		});
 	}
 
 	if (linkedinData.last_name) {
 		props.push({
-			name : 'last_name',
-			value : linkedinData.last_name,
-			type : 'SYSTEM'
+			name: 'last_name',
+			value: linkedinData.last_name,
+			type: 'SYSTEM'
 		});
 	}
 
 	if (linkedinData.email) {
 		props.push({
-			name : 'email',
-			value : linkedinData.email,
-			type : 'SYSTEM',
-			subtype : 'primary'
+			name: 'email',
+			value: linkedinData.email,
+			type: 'SYSTEM',
+			subtype: 'primary'
 		});
 	}
 
 	if (linkedinData.phone) {
 		props.push({
-			name : 'phone',
-			value : linkedinData.phone,
-			type : 'SYSTEM',
-			subtype : 'other'
+			name: 'phone',
+			value: linkedinData.phone,
+			type: 'SYSTEM',
+			subtype: 'other'
 		});
 	}
 
-	if (linkedinData.url) {
+	if (linkedinData.url && linkedinData.url != linkedinData.link) {
 		props.push({
-			name : 'website',
-			value : linkedinData.url,
-			type : 'SYSTEM',
-			subtype : 'URL'
+			name: 'website',
+			value: linkedinData.url,
+			type: 'SYSTEM',
+			subtype: 'URL'
 		});
 	}
 
 	if (linkedinData.link) {
 		props.push({
-			name : 'website',
-			value : linkedinData.link,
-			type : 'SYSTEM',
-			subtype : 'LINKEDIN'
+			name: 'website',
+			value: linkedinData.link,
+			type: 'SYSTEM',
+			subtype: 'LINKEDIN'
 		});
 	}
 
 	if (linkedinData.twitter_url) {
 		props.push({
-			name : 'website',
-			value : linkedinData.twitter_url,
-			type : 'SYSTEM',
-			subtype : 'TWITTER'
+			name: 'website',
+			value: linkedinData.twitter_url,
+			type: 'SYSTEM',
+			subtype: 'TWITTER'
 		});
 	}
 
@@ -180,42 +180,42 @@ function createContactFormate(linkedinData) {
 		if (linkedinData.city) {
 			address.city = linkedinData.city;
 			props.push({
-				name : 'city',
-				value : linkedinData.city,
-				type : 'SYSTEM'
+				name: 'city',
+				value: linkedinData.city,
+				type: 'SYSTEM'
 			});
 		}
 
 		if (linkedinData.state) {
 			address.state = linkedinData.state;
 			props.push({
-				name : 'state',
-				value : linkedinData.state,
-				type : 'SYSTEM'
+				name: 'state',
+				value: linkedinData.state,
+				type: 'SYSTEM'
 			});
 		}
 
 		if (linkedinData.country) {
 			address.country = linkedinData.country;
 			props.push({
-				name : 'country',
-				value : linkedinData.country,
-				type : 'SYSTEM'
+				name: 'country',
+				value: linkedinData.country,
+				type: 'SYSTEM'
 			});
 		}
 
 		props.push({
-			name : 'address',
-			value : JSON.stringify(address),
-			type : 'SYSTEM'
+			name: 'address',
+			value: JSON.stringify(address),
+			type: 'SYSTEM'
 		});
 	}
 
 	saveEachContactengagebay100(props);
 }
 
-setTimeout(function() {
-	
+setTimeout(function () {
+
 	// var x = $('body').find('.pv-top-card-v3--experience-list-item')[0];
 
 	/*
@@ -226,31 +226,31 @@ setTimeout(function() {
 	 */
 
 	$('body')
-			.on(
-					'click',
-					'.engagebayContactAdd',
-					function() {
+		.on(
+			'click',
+			'.engagebayContactAdd',
+			function () {
 
-						if ($(this).hasClass('disabled'))
-							return;
+				if ($(this).hasClass('disabled'))
+					return;
 
-						// Disable button
-						var $eles = $('.engagebayContactAdd');
-						$eles.css('pointer-events', 'none');
-						$eles.text('Saving to EngageBay...');
-						$eles.addClass('disabled');
+				// Disable button
+				var $eles = $('.engagebayContactAdd');
+				$eles.css('pointer-events', 'none');
+				$eles.text('Saving to EngageBay...');
+				$eles.addClass('disabled');
 
-						var profileId = window.location.href
-								.replace('www.', '').replace('linkedin.com/in',
-										'').replace('https://', '').replace(
-										'http://', '').split('/').join('')
-								.split('#')[0].split('?')[0];
+				var profileId = window.location.href
+					.replace('www.', '').replace('linkedin.com/in',
+						'').replace('https://', '').replace(
+							'http://', '').split('/').join('')
+					.split('#')[0].split('?')[0];
 
-						fetchLinkedInProfileData(profileId, function(data) {
-							createContactFormate(data);
-						});
+				fetchLinkedInProfileData(profileId, function (data) {
+					createContactFormate(data);
+				});
 
-					});
+			});
 
 }, 3000);
 
@@ -262,22 +262,22 @@ setTimeout(function() {
  * },1000);
  */
 
-setInterval(function() {
-	
+setInterval(function () {
+
 	contactInfo();
-	
+
 	// if (location.href != oldLocation) {
-		
-		/*
-		 * // do your action oldLocation = location.href var svbt =
-		 * document.getElementById('.engagebayContactAdd'); var svmsg =
-		 * document.getElementById('.engagebayContactAdd'); if (svbt != null) {
-		 * document.getElementById('.engagebayContactAdd').remove(); } if (svmsg !=
-		 * null) { document.getElementById('.engagebayContactAdd').remove(); }
-		 * var x = $('div.pv-top-card-v2-section__actions.mt2')[0]; if (x !=
-		 * undefined) { contactInfo();
-		 * if(document.querySelector(".contact-see-more-less") != null)
-		 * document.querySelector(".contact-see-more-less").click(); }
-		 */
+
+	/*
+	 * // do your action oldLocation = location.href var svbt =
+	 * document.getElementById('.engagebayContactAdd'); var svmsg =
+	 * document.getElementById('.engagebayContactAdd'); if (svbt != null) {
+	 * document.getElementById('.engagebayContactAdd').remove(); } if (svmsg !=
+	 * null) { document.getElementById('.engagebayContactAdd').remove(); }
+	 * var x = $('div.pv-top-card-v2-section__actions.mt2')[0]; if (x !=
+	 * undefined) { contactInfo();
+	 * if(document.querySelector(".contact-see-more-less") != null)
+	 * document.querySelector(".contact-see-more-less").click(); }
+	 */
 	//}
 }, 1000); // check every second
